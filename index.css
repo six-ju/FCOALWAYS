@@ -4,3 +4,19 @@
     background: #80808000;
     border: 0px;
 }
+
+.here{
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    align-content: space-around;
+}
+
+#nickName-input{
+    display: flex;
+    justify-content: center;
+}
+
+body{
+    margin: 17%;
+}

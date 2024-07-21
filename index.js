@@ -3,6 +3,14 @@ $(document).ready(function () {
     let id = $(".id").val();
     fifa(id);
   });
+
+  // 엔터
+  $(".id").on("keyup", function (key) {
+    if (key.keyCode == 13) {
+      let id = $(".id").val();
+      fifa(id);
+    }
+  });
 });
 let API_KEY =
   "test_3a3ad56d3237983d9aaa7efed61238cf0550885dd47411e8a09fa4bf3c910dabefe8d04e6d233bd35cf2fabdeb93fb0d";
@@ -36,8 +44,8 @@ async function fifaUser(data) {
     .then((data) => {
       // 예시: 가져온 데이터를 HTML에 추가하는 경우
       $(".here").html(`
-            <p>Nickname: ${data.nickname}</p>
-            <p>Level: ${data.level}</p>
+            <p>닉네임: ${data.nickname}</p>
+            <p>레 벨: ${data.level}</p>
             <p>달성 일자 : ${maxdivision.achievementDate}</p>
             <p>최고 점수 : ${maxdivision.division}</p>
             <p>경기 타입 : ${maxdivision.matchType}</p>
@@ -56,7 +64,8 @@ async function fifaMatchfinal(data) {
   });
 
   let maxdivisionData = await answers.json();
-  console.log(maxdivisionData);
+  maxdivisionData[0].achievementDate =
+    maxdivisionData[0].achievementDate.split("T")[0];
   maxdivisionData[0].division = await fifaDivision(maxdivisionData[0].division);
   maxdivisionData[0].matchType = await fifaMathType(
     maxdivisionData[0].matchType
