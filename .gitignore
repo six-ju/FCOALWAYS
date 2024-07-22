@@ -1,4 +1,2 @@
 # .gitignore 파일에 config.js 추가
-.env
 node_modules
-dbconfig.ts
