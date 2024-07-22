@@ -27,7 +27,10 @@ function fifa(id) {
   })
     .then((response) => response.json())
     .then((data) => fifaUser(data))
-    .catch((error) => console.error(error));
+    .catch((error) => $(".here").html(`
+      <p>사용자를 찾지 못했습니다.</p>
+      <p>제대로 입력해주세요. </p>
+  `));
 }
 
 //  내정보 몰아서 보기
@@ -64,12 +67,9 @@ async function fifaMatchfinal(data) {
   });
 
   let maxdivisionData = await answers.json();
-  maxdivisionData[0].achievementDate =
-    maxdivisionData[0].achievementDate.split("T")[0];
+  maxdivisionData[0].achievementDate = maxdivisionData[0].achievementDate.split("T")[0];
   maxdivisionData[0].division = await fifaDivision(maxdivisionData[0].division);
-  maxdivisionData[0].matchType = await fifaMathType(
-    maxdivisionData[0].matchType
-  );
+  maxdivisionData[0].matchType = await fifaMathType(maxdivisionData[0].matchType);
   return maxdivisionData[0];
 }
 

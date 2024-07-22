@@ -17,6 +17,18 @@
     justify-content: center;
 }
 
-body{
-    margin: 17%;
+.headerButton{
+    border: none;
+    background-color: black;
+    color: white;
+    height: 75px;
+    border-radius: 30px;
+    width: 130px;
+    margin: 0 10px 0 10px;
+}
+
+.headerdiv{
+    display: flex;
+    justify-content: center;
+    margin-bottom: 20px;
 }
