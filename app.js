@@ -31,9 +31,14 @@ app.use((req, res, next) => {
     next();
 });
 
-app.get('/',(req,res)=>{
-    res.sendFile(path.join(__dirname, 'src/view', 'index.html'));
-});
+const indexRouter = require('./routes/index');
+app.use('/', indexRouter);
+
+
+
+// app.get('/',(req,res)=>{
+//     res.sendFile(path.join(__dirname, 'src/view', 'index.html'));
+// });
 /*app.get(주소, 라우터) : 주소에 대한 GET요청이 올 때 어떤 동작을 할지 적는 부분
 ex) app.post, app.patch, app.put, app.delete, app.options
 express에서는 http와 다르게 res.write, rew.end 대신 res.send 사용

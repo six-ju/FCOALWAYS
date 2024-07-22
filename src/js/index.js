@@ -1,3 +1,5 @@
+import fifaKey from '/config/config.js';
+
 $(document).ready(function () {
   $("#pw").click(function () {
     let id = $(".id").val();
@@ -12,9 +14,7 @@ $(document).ready(function () {
     }
   });
 });
-
-let API_KEY =
-  "test_3a3ad56d3237983d9aaa7efed61238cf0550885dd47411e8a09fa4bf3c910dabefe8d04e6d233bd35cf2fabdeb93fb0d";
+const API_KEY = fifaKey.NEXON_API_KEY;
 
 function fifa(id) {
   let characterName = id;
