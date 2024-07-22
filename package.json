@@ -1,5 +1,4 @@
 {
-  "type": "module",
   "dependencies": {
     "bootstrap": "^5.3.3",
     "cookie-parser": "^1.4.6",
