@@ -32,3 +32,11 @@
     justify-content: center;
     margin-bottom: 20px;
 }
+
+body{
+    background-color: black;
+}
+
+p{
+    color: white;
+}

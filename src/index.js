@@ -12,6 +12,7 @@ $(document).ready(function () {
     }
   });
 });
+
 let API_KEY =
   "test_3a3ad56d3237983d9aaa7efed61238cf0550885dd47411e8a09fa4bf3c910dabefe8d04e6d233bd35cf2fabdeb93fb0d";
 
@@ -29,7 +30,7 @@ function fifa(id) {
     .then((data) => fifaUser(data))
     .catch((error) => $(".here").html(`
       <p>사용자를 찾지 못했습니다.</p>
-      <p>제대로 입력해주세요. </p>
+      <p>다시 입력해주세요. </p>
   `));
 }
 
