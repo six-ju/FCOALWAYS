@@ -2,14 +2,18 @@ import fifaKey from '/config/config.js';
 
 $(document).ready(function () {
   $("#pw").click(function () {
-    let id = $(".id").val();
+    $(".notFoundNickName").html('');
+    $(".allUserInfo").addClass("hide");
+    let id = $(".idinput").val().replace(/ /g, '');;
     fifa(id);
   });
 
   // 엔터
-  $(".id").on("keyup", function (key) {
+  $(".idinput").on("keyup", function (key) {
     if (key.keyCode == 13) {
-      let id = $(".id").val();
+      $(".notFoundNickName").html('');
+      $(".allUserInfo").addClass("hide");
+      let id = $(".idinput").val().replace(/ /g, '');;
       fifa(id);
     }
   });
@@ -28,7 +32,7 @@ function fifa(id) {
   })
     .then((response) => response.json())
     .then((data) => fifaUser(data))
-    .catch((error) => $(".here").html(`
+    .catch((error) => $(".notFoundNickName").html(`
       <p>사용자를 찾지 못했습니다.</p>
       <p>다시 입력해주세요. </p>
   `));
@@ -46,14 +50,16 @@ async function fifaUser(data) {
   })
     .then((response) => response.json())
     .then((data) => {
+      $(".allUserInfo").removeClass("hide")
       // 예시: 가져온 데이터를 HTML에 추가하는 경우
-      $(".here").html(`
+      $(".showUserInfoTable").html(`
             <p>닉네임: ${data.nickname}</p>
             <p>레 벨: ${data.level}</p>
             <p>달성 일자 : ${maxdivision.achievementDate}</p>
             <p>최고 점수 : ${maxdivision.division}</p>
             <p>경기 타입 : ${maxdivision.matchType}</p>
         `);
+
     });
 }
 

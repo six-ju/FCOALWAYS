@@ -1,23 +1,32 @@
-.naver{
+body {
+    background-color: black;
+    margin: 0 15% 0 15%;
+}
+
+p {
+    color: white;
+}
+
+.naver {
     width: 100px;
     aspect-ratio: 1 / 1;
     background: #80808000;
     border: 0px;
 }
 
-.here{
+.notFoundNickName {
     display: flex;
     flex-direction: column;
     flex-wrap: wrap;
     align-content: space-around;
 }
 
-#nickName-input{
+#nickName-input {
     display: flex;
     justify-content: center;
 }
 
-.headerButton{
+.headerButton {
     border: none;
     background-color: black;
     color: white;
@@ -27,16 +36,32 @@
     margin: 5px 10px 0 10px;
 }
 
-.headerdiv{
+.headerdiv {
     display: flex;
     justify-content: center;
     margin-bottom: 20px;
 }
 
-body{
-    background-color: black;
+.searchinfo {
+    min-width: 836px;
+    border-radius: 67px;
 }
 
-p{
-    color: white;
+.btn {
+    color: black;
+    left: 93%;
+    bottom: 49%;
+}
+
+.idinput {
+    width: 100%;
+    height: 50px;
+    border-radius: 67px;
+    padding: 30px;
+    filter: drop-shadow(0 3px 4px rgb(0, 255, 13)) drop-shadow(0 3px 3px rgba(0, 255, 13))
+        drop-shadow(0 1px 8px rgba(0, 255, 13)) drop-shadow(0 -2px 2px rgba(0, 255, 13));
+}
+
+.hide{
+    display:none
 }
