@@ -76,11 +76,13 @@ async function fifaUser(data) {
                       <div class = "date-name-score-center">
                         <p> ${userMatchInfo[i].matchDate}</p>
                         <div class = "nickname-score">
-                          <span> ${userMatchInfo[i].matchInfo[0].nickname}</span>
-                          <span> ${userMatchInfo[i].matchInfo[0].shoot.goalTotal}</span>
-                          - 
-                          <span> ${userMatchInfo[i].matchInfo[1].shoot.goalTotal}</span>
-                          <span> ${userMatchInfo[i].matchInfo[1].nickname}</span>
+                          <span> 
+                            ${userMatchInfo[i].matchInfo[0].nickname}  
+                                ${userMatchInfo[i].matchInfo[0].shoot.goalTotal}  
+                                    -  
+                                ${userMatchInfo[i].matchInfo[1].shoot.goalTotal}  
+                            ${userMatchInfo[i].matchInfo[1].nickname}
+                          </span>
                         </div>
                       </div>
                     </div>
