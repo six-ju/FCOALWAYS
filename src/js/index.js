@@ -50,7 +50,7 @@ async function fifaUser(data) {
     // 정보 가져오기
     let maxdivision = await fifaMatchfinal(data.ouid);
     let userMatchInfo = await userAllMatchInfo(data.ouid);
-
+console.log(userMatchInfo)
     let answers = fetch(userInfo, {
         headers: {
             'x-nxopen-api-key': API_KEY,
@@ -120,26 +120,25 @@ async function fifaDivision(data) {
 
 // 유저 매치 정보 가져오기
 async function userAllMatchInfo(ouid) {
-    let userMatchInfoURL = `https://open.api.nexon.com/fconline/v1/user/match?ouid=${ouid}&matchtype=50`;
+    let userMatchInfoURL = `https://open.api.nexon.com/fconline/v1/user/match?ouid=${ouid}&matchtype=50&limit=2`;
     let answers = await fetch(userMatchInfoURL, {
         headers: {
             'x-nxopen-api-key': API_KEY,
         },
     });
     let getUserMatchId = await answers.json();
-
-    let userMatchInfoDetailURL = `https://open.api.nexon.com/fconline/v1/match-detail?ouid=${ouid}&matchid=${getUserMatchId}`;
-    answers = await fetch(userMatchInfoDetailURL, {
-        headers: {
-            'x-nxopen-api-key': API_KEY,
-        },
-    });
-    let getUserMatchDetailInfo = await answers.json();
+    console.log(getUserMatchId);
     let matchList = [];
 
-    console.log(getUserMatchDetailInfo)
-    for (let i = 0; i < getUserMatchDetailInfo.length; i++) {
-        matchList.push(getUserMatchDetailInfo[i]);
+    for (let i = 0; i < getUserMatchId.length; i++) {
+        let userMatchInfoDetailURL = `https://open.api.nexon.com/fconline/v1/match-detail?ouid=${ouid}&matchid=${getUserMatchId[i]}`;
+        answers = await fetch(userMatchInfoDetailURL, {
+            headers: {
+                'x-nxopen-api-key': API_KEY,
+            },
+        });
+        let getUserMatchDetailInfo = await answers.json();
+        matchList.push(getUserMatchDetailInfo)
     }
 
     return matchList;
