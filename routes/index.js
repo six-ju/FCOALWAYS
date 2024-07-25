@@ -1,6 +1,5 @@
 const express = require('express');
 const router = express.Router();
-const path = require('path');
 
 // 루트 라우트
 router.get('/', (req, res) => {

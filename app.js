@@ -4,6 +4,7 @@ const cookiParser = require('cookie-parser');
 const session = require('express-session');
 const path = require('path');
 const dotenv = require('dotenv');
+const schedule = require('./src/config/schedules/scheduler')
 //설치한 미들웨어 및 모듈  불러오기
 
 dotenv.config();
