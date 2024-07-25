@@ -126,6 +126,7 @@ p {
     display: flex;
 }
 
+/* 매치 정보 리스트 각각 */
 .search-result{
     padding: 25px;
     margin-top: 2%;
@@ -133,19 +134,17 @@ p {
     display: flex;
     flex-direction: column;
     align-items: center;
-}
-
-.search-result {
     background-color: rgba(34, 197, 94, 0.5); /* 기본 배경색 */
     transition: background-color 0.3s ease; /* 부드러운 색상 전환 효과 */
+    border-radius: 20px;
 }
 
 .search-result.win {
-    background-color: rgba(34, 197, 94, 0.25); /* 승리 시 기본 색상 */
+    background-color: rgba(34, 197, 94, 0.15); /* 승리 시 기본 색상 */
 }
 
 .search-result.lose {
-    background-color: rgba(239, 68, 68, 0.25); /* 패배 시 기본 색상 */
+    background-color: rgba(239, 68, 68, 0.15); /* 패배 시 기본 색상 */
 }
 
 .search-result:hover {
@@ -154,4 +153,15 @@ p {
 
 .search-result.lose:hover {
     background-color: rgba(239, 68, 68, 0.8); /* 패배 시 호버 상태 색상 */
+}
+
+.nickname-score{
+    color: white;
+}
+
+.date-name-score-center{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }

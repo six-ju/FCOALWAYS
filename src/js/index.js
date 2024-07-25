@@ -73,10 +73,14 @@ async function fifaUser(data) {
       for (let i = 0; i < userMatchInfo.length; i++) {
         $(".userAllMatchInfo").append(`
                     <div class = 'search-result'>
-                      <div>
+                      <div class = "date-name-score-center">
                         <p> ${userMatchInfo[i].matchDate}</p>
-                        <div>
-                          <span> ${userMatchInfo[i].matchInfo[0].nickname}</span> VS <span> ${userMatchInfo[i].matchInfo[1].nickname}</span>
+                        <div class = "nickname-score">
+                          <span> ${userMatchInfo[i].matchInfo[0].nickname}</span>
+                          <span> ${userMatchInfo[i].matchInfo[0].shoot.goalTotal}</span>
+                          - 
+                          <span> ${userMatchInfo[i].matchInfo[1].shoot.goalTotal}</span>
+                          <span> ${userMatchInfo[i].matchInfo[1].nickname}</span>
                         </div>
                       </div>
                     </div>
