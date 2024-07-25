@@ -64,7 +64,7 @@ p {
 
 /* 숨김 처리 */
 .hide{
-    display:none
+    display:none !important
 }
 
 /* 평가 버튼 */
@@ -72,6 +72,7 @@ p {
     filter: drop-shadow(0 3px 4px rgb(0, 255, 13)) drop-shadow(0 3px 3px rgba(0, 255, 13))
     drop-shadow(0 1px 8px rgba(0, 255, 13)) drop-shadow(0 -2px 2px rgba(0, 255, 13));
     width: 39%;
+    height: 50px;
     margin-left: 5%;
     margin-right: 5%;
 
@@ -81,8 +82,24 @@ p {
     filter: drop-shadow(0 3px 4px rgb(255, 0, 0)) drop-shadow(0 3px 3px rgba(255, 0, 0))
     drop-shadow(0 1px 8px rgba(255, 0, 0)) drop-shadow(0 -2px 2px rgba(255, 0, 0));
     width: 39%;
+    height: 50px;
     margin-left: 5%;
     margin-right: 5%;
+    border: 2px solid #3498db; /* 버튼 테두리 색상 */
+    color: #3498db; /* 버튼 텍스트 색상 */
+    padding: 10px 20px;
+    font-size: 16px;
+    font-family: Arial, sans-serif;
+    text-align: center;
+    cursor: pointer;
+    transition: all 0.3s ease; /* 부드러운 애니메이션 효과 */
+    border-radius: 5px; /* 둥근 모서리 */
+    outline: none; /* 기본 테두리 제거 */
+}
+
+.badManners:hover {
+    background-color: #ff0000; /* 마우스 오버 시 배경색 */
+    color: white; /* 마우스 오버 시 텍스트 색상 */
 }
 
 .checkMannerBtn{
@@ -93,4 +110,13 @@ p {
 /* 유저 정보 테이블 */
 .allUserInfo{
     width: 24%;
+}
+
+.userAllMatchInfo{
+    min-width: 1019px;
+    background: white;
+}
+
+.userInfoPage{
+    display: flex;
 }
