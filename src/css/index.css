@@ -120,6 +120,7 @@ p {
     flex-direction: column;
     align-items: center;
     padding: 0 18px;
+    margin-bottom: 350px;
 }
 
 .userInfoPage{
@@ -151,6 +152,10 @@ p {
     background-color: rgba(156, 163, 175, 0.15); /* 무승부 시 기본 색상 (회색) */
 }
 
+.search-result.more-list-btn {
+    background-color: rgba(255, 255, 255, 0.462); /* 무승부 시 기본 색상 (회색) */
+}
+
 .search-result:hover {
     background-color: rgba(34, 197, 94, 0.8); /* 승리 시 호버 상태 색상 */
 }
@@ -161,6 +166,10 @@ p {
 
 .search-result.draw:hover {
     background-color: rgba(156, 163, 175, 0.8); /* 무승부 호버 색상 (짙은 회색) */
+}
+
+.search-result.more-list-btn:hover {
+    background-color: rgba(255, 255, 255, 0.6); /* 무승부 호버 색상 (짙은 회색) */
 }
 
 .nickname-score{

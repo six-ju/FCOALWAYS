@@ -19,10 +19,12 @@ $(document).ready(function () {
             fifa(id);
         }
     });
+
     $('.admin').click(function () {
         // 버튼 클릭 시 수행할 작업
         alert('Admin button clicked!');
     });
+
 });
 
 // 키값
@@ -50,6 +52,7 @@ function fifa(id) {
 
 //  내정보 몰아서 보기
 async function fifaUser(data) {
+  console.log(data)
     let userInfo = 'https://open.api.nexon.com/fconline/v1/user/basic?ouid=' + data.ouid;
 
     // 정보 가져오기
@@ -88,7 +91,7 @@ async function fifaUser(data) {
                 $('.userAllMatchInfo').append(`
                     <div class = 'search-result'>
                       <div class = "date-name-score-center">
-                        <p> ${(userMatchInfo[i].matchDate).split('T')[0]}</p>
+                        <p> ${userMatchInfo[i].matchDate.split('T')[0]}</p>
                         <div class = "nickname-score">
                           <span> 
                             ${userMatchInfo[i].matchInfo[0].nickname}  
@@ -114,6 +117,11 @@ async function fifaUser(data) {
                     $lastSearchResult.addClass('draw');
                 }
             }
+
+            $('.userAllMatchInfo').append(`
+              <button class='search-result' data-id="1">더보기</button>
+              `);
+
         });
 }
 
@@ -159,7 +167,7 @@ async function fifaDivision(data) {
 
 // 유저 매치 정보 가져오기
 async function userAllMatchInfo(ouid) {
-    let userMatchInfoURL = `https://open.api.nexon.com/fconline/v1/user/match?ouid=${ouid}&matchtype=50&limit=10`;
+    let userMatchInfoURL = `https://open.api.nexon.com/fconline/v1/user/match?ouid=${ouid}&matchtype=50&offset=0&limit=10`;
     let answers = await fetch(userMatchInfoURL, {
         headers: {
             'x-nxopen-api-key': API_KEY,
@@ -182,6 +190,19 @@ async function userAllMatchInfo(ouid) {
     return matchList;
 }
 
+// 매치 정보 더보기
+async function getMoreUserMatchInfo() {
+    let offset = 0;
+    let limit = 10;
+    let userMatchInfoURL = `https://open.api.nexon.com/fconline/v1/user/match?ouid=${ouid}&matchtype=50&offset=${offset}&limit=${limit}`;
+    let answers = await fetch(userMatchInfoURL, {
+        headers: {
+            'x-nxopen-api-key': API_KEY,
+        },
+    });
+    let getUserMatchId = await answers.json();
+}
+
 // 모든 선수 이미지 가져오기
 async function getAllPlayerPhoto() {
     let playerData = [];
@@ -189,18 +210,18 @@ async function getAllPlayerPhoto() {
     let userMatchInfoURL = `https://open.api.nexon.com/static/fconline/meta/spid.json`;
     let answers = await fetch(userMatchInfoURL);
     let playerId = await answers.json();
-    console.log(playerId)
+    console.log(playerId);
     // 랜덤으로 선수 숫자가져오기
     let min = 62300;
-  let max = 71214;
-  let randomPlayerNumber = Math.floor(Math.random() * (max - min + 1)) + min;
+    let max = 71214;
+    let randomPlayerNumber = Math.floor(Math.random() * (max - min + 1)) + min;
 
     let randomPlayerSpId = playerId[randomPlayerNumber].id;
     let randomPlayerName = playerId[randomPlayerNumber].name;
 
     // ID에 맞는 선수 이미지 가져오기
     let playerActionPhoto = `https://fco.dn.nexoncdn.co.kr/live/externalAssets/common/playersAction/p${randomPlayerSpId}.png`;
-    
+
     playerData.push({
         id: randomPlayerSpId,
         name: randomPlayerName,
