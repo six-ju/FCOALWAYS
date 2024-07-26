@@ -24,6 +24,8 @@ $(document).ready(function () {
         alert('Admin button clicked!');
     });
 });
+
+// 키값
 const API_KEY = fifaKey.NEXON_API_KEY;
 let characterName = '';
 
@@ -54,7 +56,7 @@ async function fifaUser(data) {
     let maxdivision = await fifaMatchfinal(data.ouid);
     let userMatchInfo = await userAllMatchInfo(data.ouid);
     let palyerList = await getAllPlayerPhoto();
-console.log(palyerList[0])
+
     let answers = fetch(userInfo, {
         headers: {
             'x-nxopen-api-key': API_KEY,
@@ -65,7 +67,8 @@ console.log(palyerList[0])
             $('.userInfoPage').removeClass('hide');
 
             $('.showUserRandomPhoto').html(`
-              <img src="${palyerList[0].photo}">
+              <img src="${palyerList[0].photo}" class="playPhoto">
+              <div>${palyerList[0].name}</div>
               `);
             // 예시: 가져온 데이터를 HTML에 추가하는 경우
             $('.showUserInfoTable').html(`
@@ -85,7 +88,7 @@ console.log(palyerList[0])
                 $('.userAllMatchInfo').append(`
                     <div class = 'search-result'>
                       <div class = "date-name-score-center">
-                        <p> ${userMatchInfo[i].matchDate}</p>
+                        <p> ${(userMatchInfo[i].matchDate).split('T')[0]}</p>
                         <div class = "nickname-score">
                           <span> 
                             ${userMatchInfo[i].matchInfo[0].nickname}  
@@ -156,7 +159,7 @@ async function fifaDivision(data) {
 
 // 유저 매치 정보 가져오기
 async function userAllMatchInfo(ouid) {
-    let userMatchInfoURL = `https://open.api.nexon.com/fconline/v1/user/match?ouid=${ouid}&matchtype=50&limit=2`;
+    let userMatchInfoURL = `https://open.api.nexon.com/fconline/v1/user/match?ouid=${ouid}&matchtype=50&limit=10`;
     let answers = await fetch(userMatchInfoURL, {
         headers: {
             'x-nxopen-api-key': API_KEY,
@@ -186,15 +189,18 @@ async function getAllPlayerPhoto() {
     let userMatchInfoURL = `https://open.api.nexon.com/static/fconline/meta/spid.json`;
     let answers = await fetch(userMatchInfoURL);
     let playerId = await answers.json();
-    let playerIdCount = playerId.length;
+    console.log(playerId)
     // 랜덤으로 선수 숫자가져오기
-    let randomPlayerNumber = Math.floor(Math.random() * playerIdCount);
+    let min = 62300;
+  let max = 71214;
+  let randomPlayerNumber = Math.floor(Math.random() * (max - min + 1)) + min;
+
     let randomPlayerSpId = playerId[randomPlayerNumber].id;
     let randomPlayerName = playerId[randomPlayerNumber].name;
 
     // ID에 맞는 선수 이미지 가져오기
     let playerActionPhoto = `https://fco.dn.nexoncdn.co.kr/live/externalAssets/common/playersAction/p${randomPlayerSpId}.png`;
-
+    
     playerData.push({
         id: randomPlayerSpId,
         name: randomPlayerName,
