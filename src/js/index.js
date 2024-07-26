@@ -25,7 +25,7 @@ $(document).ready(function () {
     });
 });
 const API_KEY = fifaKey.NEXON_API_KEY;
-let characterName = "";
+let characterName = '';
 
 function fifa(id) {
     characterName = id;
@@ -53,8 +53,8 @@ async function fifaUser(data) {
     // 정보 가져오기
     let maxdivision = await fifaMatchfinal(data.ouid);
     let userMatchInfo = await userAllMatchInfo(data.ouid);
-    await getAllPlayerPhoto()
-    console.log(userMatchInfo);
+    let palyerList = await getAllPlayerPhoto();
+console.log(palyerList[0])
     let answers = fetch(userInfo, {
         headers: {
             'x-nxopen-api-key': API_KEY,
@@ -65,8 +65,8 @@ async function fifaUser(data) {
             $('.userInfoPage').removeClass('hide');
 
             $('.showUserRandomPhoto').html(`
-              <img src=''>
-              `)
+              <img src="${palyerList[0].photo}">
+              `);
             // 예시: 가져온 데이터를 HTML에 추가하는 경우
             $('.showUserInfoTable').html(`
             <p>닉네임: ${data.nickname}</p>
@@ -78,11 +78,11 @@ async function fifaUser(data) {
 
             for (let i = 0; i < userMatchInfo.length; i++) {
                 if (userMatchInfo[i].matchInfo[0].nickname != characterName) {
-                  let temp = userMatchInfo[i].matchInfo[0]
-                  userMatchInfo[i].matchInfo[0] = userMatchInfo[i].matchInfo[1]
-                  userMatchInfo[i].matchInfo[1] = temp
+                    let temp = userMatchInfo[i].matchInfo[0];
+                    userMatchInfo[i].matchInfo[0] = userMatchInfo[i].matchInfo[1];
+                    userMatchInfo[i].matchInfo[1] = temp;
                 }
-                    $('.userAllMatchInfo').append(`
+                $('.userAllMatchInfo').append(`
                     <div class = 'search-result'>
                       <div class = "date-name-score-center">
                         <p> ${userMatchInfo[i].matchDate}</p>
@@ -99,19 +99,18 @@ async function fifaUser(data) {
                     </div>
                     `);
 
-                    // Select the most recently appended .search-result element
-                    let $lastSearchResult = $('.userAllMatchInfo .search-result').last();
+                // Select the most recently appended .search-result element
+                let $lastSearchResult = $('.userAllMatchInfo .search-result').last();
 
-                    // Apply the background color based on match result
-                    if (userMatchInfo[i].matchInfo[0].matchDetail.matchResult === '승') {
-                        $lastSearchResult.addClass('win');
-                    } else if(userMatchInfo[i].matchInfo[0].matchDetail.matchResult === '패') {
-                        $lastSearchResult.addClass('lose');
-                    }
-                    else if(userMatchInfo[i].matchInfo[0].matchDetail.matchResult === '무') {
-                      $lastSearchResult.addClass('draw');
-                  }
+                // Apply the background color based on match result
+                if (userMatchInfo[i].matchInfo[0].matchDetail.matchResult === '승') {
+                    $lastSearchResult.addClass('win');
+                } else if (userMatchInfo[i].matchInfo[0].matchDetail.matchResult === '패') {
+                    $lastSearchResult.addClass('lose');
+                } else if (userMatchInfo[i].matchInfo[0].matchDetail.matchResult === '무') {
+                    $lastSearchResult.addClass('draw');
                 }
+            }
         });
 }
 
@@ -148,7 +147,6 @@ async function fifaDivision(data) {
     let divisionData = 'https:open.api.nexon.com/static/fconline/meta/division.json';
     let answers = await fetch(divisionData, {});
     let datafordivision = await answers.json();
-    console.log(datafordivision);
     for (let i = 0; i < datafordivision.length; i++) {
         if (datafordivision[i].divisionId == data) {
             return datafordivision[i].divisionName;
@@ -165,7 +163,6 @@ async function userAllMatchInfo(ouid) {
         },
     });
     let getUserMatchId = await answers.json();
-    console.log(getUserMatchId);
     let matchList = [];
 
     for (let i = 0; i < getUserMatchId.length; i++) {
@@ -183,10 +180,26 @@ async function userAllMatchInfo(ouid) {
 }
 
 // 모든 선수 이미지 가져오기
-async function getAllPlayerPhoto(){
-  let userMatchInfoURL = `https://open.api.nexon.com/static/fconline/meta/spid.json`;
-  let answers = await fetch(userMatchInfoURL);
-  let playerId = await answers.json();
-  let playerIdCount = playerId.length;
-  console.log(playerIdCount)
+async function getAllPlayerPhoto() {
+    let playerData = [];
+    // 모든 선수 ID 가져옴
+    let userMatchInfoURL = `https://open.api.nexon.com/static/fconline/meta/spid.json`;
+    let answers = await fetch(userMatchInfoURL);
+    let playerId = await answers.json();
+    let playerIdCount = playerId.length;
+    // 랜덤으로 선수 숫자가져오기
+    let randomPlayerNumber = Math.floor(Math.random() * playerIdCount);
+    let randomPlayerSpId = playerId[randomPlayerNumber].id;
+    let randomPlayerName = playerId[randomPlayerNumber].name;
+
+    // ID에 맞는 선수 이미지 가져오기
+    let playerActionPhoto = `https://fco.dn.nexoncdn.co.kr/live/externalAssets/common/playersAction/p${randomPlayerSpId}.png`;
+
+    playerData.push({
+        id: randomPlayerSpId,
+        name: randomPlayerName,
+        photo: playerActionPhoto,
+    });
+
+    return playerData;
 }
