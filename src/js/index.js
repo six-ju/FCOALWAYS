@@ -4,6 +4,7 @@ $(document).ready(function () {
     $('#pw').click(function () {
         $('.notFoundNickName').html('');
         $('.userInfoPage').addClass('hide');
+        $('.userAllMatchInfo').empty();
         let id = $('.idinput').val().replace(/ /g, '');
         fifa(id);
     });
@@ -13,6 +14,7 @@ $(document).ready(function () {
         if (key.keyCode == 13) {
             $('.notFoundNickName').html('');
             $('.userInfoPage').addClass('hide');
+            $('.userAllMatchInfo').empty();
             let id = $('.idinput').val().replace(/ /g, '');
             fifa(id);
         }
@@ -181,6 +183,7 @@ async function userAllMatchInfo(ouid) {
 async function getAllPlayerPhoto(){
   let userMatchInfoURL = `https://open.api.nexon.com/static/fconline/meta/spid.json`;
   let answers = await fetch(userMatchInfoURL);
-  let playerid = await answers.json();
-  console.log(playerid)
+  let playerId = await answers.json();
+  let playerIdCount = playerId.length;
+  console.log(playerIdCount)
 }
