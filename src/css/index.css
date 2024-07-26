@@ -147,12 +147,20 @@ p {
     background-color: rgba(239, 68, 68, 0.15); /* 패배 시 기본 색상 */
 }
 
+.search-result.draw {
+    background-color: rgba(156, 163, 175, 0.15); /* 무승부 시 기본 색상 (회색) */
+}
+
 .search-result:hover {
     background-color: rgba(34, 197, 94, 0.8); /* 승리 시 호버 상태 색상 */
 }
 
 .search-result.lose:hover {
     background-color: rgba(239, 68, 68, 0.8); /* 패배 시 호버 상태 색상 */
+}
+
+.search-result.draw:hover {
+    background-color: rgba(156, 163, 175, 0.8); /* 무승부 호버 색상 (짙은 회색) */
 }
 
 .nickname-score{

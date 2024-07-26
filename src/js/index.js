@@ -105,9 +105,12 @@ async function fifaUser(data) {
                     // Apply the background color based on match result
                     if (userMatchInfo[i].matchInfo[0].matchDetail.matchResult === '승') {
                         $lastSearchResult.addClass('win');
-                    } else {
+                    } else if(userMatchInfo[i].matchInfo[0].matchDetail.matchResult === '패') {
                         $lastSearchResult.addClass('lose');
                     }
+                    else if(userMatchInfo[i].matchInfo[0].matchDetail.matchResult === '무') {
+                      $lastSearchResult.addClass('draw');
+                  }
                 }
         });
 }
