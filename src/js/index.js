@@ -34,6 +34,10 @@ $(document).ready(function () {
         $this.prop('disabled', false); // 버튼 다시 활성화
     });
 
+    $('.goodManners').click(function() {
+        $('#matchInfoModal').modal('show');
+    });
+
     async function event() {
         $('.notFoundNickName').html('');
         $('.userInfoPage').addClass('hide');
