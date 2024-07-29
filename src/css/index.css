@@ -192,3 +192,13 @@ p {
 .playPhoto{
     width: 160px;
 }
+
+.name-container {
+    padding: 20px;
+}
+
+#player-name {
+    font-size: 20px;
+    font-weight: bold;
+    color: #fff;
+}

@@ -11,4 +11,8 @@ router.get('/about', (req, res) => {
     res.render("about");
 });
 
+router.get('/market', (req, res) => {
+    res.render("market");
+});
+
 module.exports = router;
