@@ -46,16 +46,23 @@
 
             <!-- 유저 플레이 정보 -->
             <div>
-                <table class="userAllMatchInfo"></table>
+                <table class="userAllMatchInfo">
+                    <div class="search-result winRate">
+                        <canvas id="winRateChart" width="200" height="200"></canvas>
+                        <div class="winRateNumber">
+                            
+                        </div>
+                    </div>
+                </table>
             </div>
         </div>
-        
         <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js"></script>
         <script type="module" src="../js/index.js"></script>
         <script
-            src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
-            integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
-            crossorigin="anonymous"
+        src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+        crossorigin="anonymous"
         ></script>
     </body>
 </html>

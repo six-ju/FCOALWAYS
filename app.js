@@ -10,7 +10,7 @@ const schedule = require('./src/config/schedules/scheduler')
 
 dotenv.config();
 const app = express();
-app.set('port',process.env.PORT || 3000);
+app.set('port', process.env.PORT || 3000);
 //app.set('port,포트) : 서버가 실행될 포트 설정
 
 app.set('view engine', 'ejs');
@@ -19,18 +19,36 @@ app.set('views', path.join(__dirname, 'src/view'));
 app.use(morgan('dev'));
 app.use(express.static(path.join(__dirname, 'src')));
 app.use(express.json());
-app.use(express.urlencoded({ extended: false}));
+app.use(express.urlencoded({ extended: false }));
 app.use(cookiParser(process.env.COOKIE_SECRET));
-app.use(session({
-    resave: false,
-    saveUninitialized: false,
-    secret: process.env.COOKIE_SECRET,
-    cookie: {
-        httpOnly: true,
-        secure: false,
+app.use(
+    session({
+        resave: false,
+        saveUninitialized: false,
+        secret: process.env.COOKIE_SECRET,
+        cookie: {
+            httpOnly: true,
+            secure: false,
+        },
+        name: 'session-cookie',
+    }),
+);
+
+const io = require('socket.io')(4000, {
+    cors: {
+        origin: '*',
+        methods: ['GET', 'POST'],
     },
-    name: 'session-cookie',
-}));
+});
+
+io.on('connection', (socket) => {
+    console.log('새로운 소켓이 연결됐어요!');
+
+    socket.on('message', (data) => {
+        console.log(data);
+    });
+});
+
 
 // SQL 접속 설정
 const pool = new sql.ConnectionPool({
@@ -62,8 +80,6 @@ app.use((req, res, next) => {
 const indexRouter = require('./routes/index');
 app.use('/', indexRouter);
 
-
-
 // app.get('/',(req,res)=>{
 //     res.sendFile(path.join(__dirname, 'src/view', 'index.html'));
 // });
@@ -72,6 +88,6 @@ ex) app.post, app.patch, app.put, app.delete, app.options
 express에서는 http와 다르게 res.write, rew.end 대신 res.send 사용
 **/
 
-app.listen(app.get('port'),()=>{
-    console.log(app.get('port'),'번 포트에서 대기 중');
+app.listen(app.get('port'), () => {
+    console.log(app.get('port'), '번 포트에서 대기 중');
 });

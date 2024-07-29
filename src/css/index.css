@@ -69,13 +69,27 @@ p {
 
 /* 평가 버튼 */
 .goodManners{
-    filter: drop-shadow(0 3px 4px rgb(0, 255, 13)) drop-shadow(0 3px 3px rgba(0, 255, 13))
+    filter: drop-shadow(0 3px 4px #00ff0d) drop-shadow(0 3px 3px rgba(0, 255, 13))
     drop-shadow(0 1px 8px rgba(0, 255, 13)) drop-shadow(0 -2px 2px rgba(0, 255, 13));
     width: 39%;
     height: 50px;
     margin-left: 5%;
     margin-right: 5%;
+    border: 2px solid #000000; /* 버튼 테두리 색상 */
+    color: #000000; /* 버튼 텍스트 색상 */
+    padding: 10px 20px;
+    font-size: 16px;
+    font-family: Arial, sans-serif;
+    text-align: center;
+    cursor: pointer;
+    transition: all 0.3s ease; /* 부드러운 애니메이션 효과 */
+    border-radius: 5px; /* 둥근 모서리 */
+    outline: none; /* 기본 테두리 제거 */
+}
 
+.goodManners:hover {
+    background-color: #00ff0d; /* 마우스 오버 시 배경색 */
+    color: white; /* 마우스 오버 시 텍스트 색상 */
 }
 
 .badManners{
@@ -85,8 +99,8 @@ p {
     height: 50px;
     margin-left: 5%;
     margin-right: 5%;
-    border: 2px solid #3498db; /* 버튼 테두리 색상 */
-    color: #3498db; /* 버튼 텍스트 색상 */
+    border: 2px solid #000000; /* 버튼 테두리 색상 */
+    color: #000000; /* 버튼 텍스트 색상 */
     padding: 10px 20px;
     font-size: 16px;
     font-family: Arial, sans-serif;
@@ -153,7 +167,7 @@ p {
 }
 
 .search-result.more-list-btn {
-    background-color: rgba(255, 255, 255, 0.462); /* 무승부 시 기본 색상 (회색) */
+    background-color: rgba(255, 255, 255, 0.462); 
 }
 
 .search-result:hover {
@@ -169,7 +183,7 @@ p {
 }
 
 .search-result.more-list-btn:hover {
-    background-color: rgba(255, 255, 255, 0.6); /* 무승부 호버 색상 (짙은 회색) */
+    background-color: rgba(255, 255, 255, 0.6); 
 }
 
 .nickname-score{
@@ -191,4 +205,45 @@ p {
 
 .playPhoto{
     width: 160px;
+}
+
+.name-container {
+    padding: 20px;
+}
+
+#player-name {
+    font-size: 20px;
+    font-weight: bold;
+    color: #fff;
+}
+
+.winRate{
+    background-color: rgb(0, 0, 0) !important;
+    display: flex;
+    flex-direction: row;
+}
+
+.winRate:hover{
+    background-color: rgb(0, 0, 0) !important;
+}
+
+.search-result.winRate {
+    position: relative;
+    width: 969px;  /* 원하는 너비 */
+    height: 250px; /* 원하는 높이 */
+}
+#winRateChart {
+    width: 100%;  /* 부모 요소에 맞추어 크기 조정 */
+    height: 100%; /* 부모 요소에 맞추어 크기 조정 */
+}
+.winRateNumber {
+    position: absolute;
+    top: 56%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 1.5em;
+    font-weight: bold;
+    color: white;
+    text-align: center;
+    pointer-events: none; /* 클릭 이벤트 방지 */
 }
