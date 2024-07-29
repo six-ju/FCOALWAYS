@@ -4,6 +4,7 @@ const cookiParser = require('cookie-parser');
 const session = require('express-session');
 const path = require('path');
 const dotenv = require('dotenv');
+const sql = require('mssql');
 const schedule = require('./src/config/schedules/scheduler')
 //설치한 미들웨어 및 모듈  불러오기
 
@@ -30,6 +31,29 @@ app.use(session({
     },
     name: 'session-cookie',
 }));
+
+// SQL 접속 설정
+const pool = new sql.ConnectionPool({
+    user: process.env.DB_USER, // DB 사용자 이름
+    password: process.env.DB_PASSWORD, // DB 사용자의 암호
+    server: process.env.DB_HOST, // DB 서버 주소, localhost : 로컬호스트
+    database: process.env.DB_NAME, // DB의 데이터베이스 이름
+    options: {
+      trustServerCertificate: true // 자체 신뢰 서버 인증
+    },
+  });
+
+// 데이터베이스 연결
+pool.connect((err) => {
+    // 연결이 안될 경우 에러 내용 콘솔에 출력
+    if (err) {
+      console.error('Error connecting to database:', err);
+      return;
+    }
+    // 연결에 성공할 경우 연결 성공 메시지 콘솔에 출력
+    console.log('Connected to database!');
+    console.log('Connected to 111111111111111111111!');
+  });
 
 app.use((req, res, next) => {
     next();
