@@ -153,7 +153,7 @@ p {
 }
 
 .search-result.more-list-btn {
-    background-color: rgba(255, 255, 255, 0.462); /* 무승부 시 기본 색상 (회색) */
+    background-color: rgba(255, 255, 255, 0.462); 
 }
 
 .search-result:hover {
@@ -169,7 +169,7 @@ p {
 }
 
 .search-result.more-list-btn:hover {
-    background-color: rgba(255, 255, 255, 0.6); /* 무승부 호버 색상 (짙은 회색) */
+    background-color: rgba(255, 255, 255, 0.6); 
 }
 
 .nickname-score{
@@ -201,4 +201,35 @@ p {
     font-size: 20px;
     font-weight: bold;
     color: #fff;
+}
+
+.winRate{
+    background-color: rgb(0, 0, 0) !important;
+    display: flex;
+    flex-direction: row;
+}
+
+.winRate:hover{
+    background-color: rgb(0, 0, 0) !important;
+}
+
+.search-result.winRate {
+    position: relative;
+    width: 969px;  /* 원하는 너비 */
+    height: 250px; /* 원하는 높이 */
+}
+#winRateChart {
+    width: 100%;  /* 부모 요소에 맞추어 크기 조정 */
+    height: 100%; /* 부모 요소에 맞추어 크기 조정 */
+}
+.winRateNumber {
+    position: absolute;
+    top: 56%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 1.5em;
+    font-weight: bold;
+    color: white;
+    text-align: center;
+    pointer-events: none; /* 클릭 이벤트 방지 */
 }

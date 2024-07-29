@@ -1,24 +1,18 @@
 import fifaKey from '/config/config.js';
 
 $(document).ready(function () {
+    let win;
+    let lose;
+    let draw;
+
     $('#pw').click(async function () {
-        $('.notFoundNickName').html('');
-        $('.userInfoPage').addClass('hide');
-        $('.userAllMatchInfo').empty();
-        let nickName = $('.idinput').val().replace(/ /g, '');
-        let ouId = await getOuid(nickName);
-        fifaUser(ouId);
+        await event();
     });
 
     // 엔터
     $('.idinput').on('keyup', async function (key) {
         if (key.keyCode == 13) {
-            $('.notFoundNickName').html('');
-            $('.userInfoPage').addClass('hide');
-            $('.userAllMatchInfo').empty();
-            let nickName = $('.idinput').val().replace(/ /g, '');
-            let ouId = await getOuid(nickName);
-            fifaUser(ouId);
+            await event();
         }
     });
 
@@ -39,6 +33,60 @@ $(document).ready(function () {
         $(this).data('id', dataId + 1);
         $this.prop('disabled', false); // 버튼 다시 활성화
     });
+
+    async function event() {
+        $('.notFoundNickName').html('');
+        $('.userInfoPage').addClass('hide');
+        $('.userAllMatchInfo').empty();
+        let nickName = $('.idinput').val().replace(/ /g, '');
+        let ouId = await getOuid(nickName);
+        let rateList = await fifaUser(ouId);
+        win = rateList.win * 10;
+        lose = rateList.lose * 10;
+        draw = rateList.draw * 10;
+        let average = 100 - lose - draw;
+        $('.winRateNumber').text(`${average}%`);
+
+        // 도넛 원 그래프
+        const ctx = document.getElementById('winRateChart').getContext('2d');
+
+        const winRateChart = new Chart(ctx, {
+            type: 'doughnut',
+            data: {
+                labels: ['승리', '패배', '무승부'],
+                datasets: [
+                    {
+                        label: '게임 결과',
+                        data: [win, lose, draw],
+                        backgroundColor: [
+                            'rgba(34, 197, 94, 0.8)',
+                            'rgba(239, 68, 68, 0.8)',
+                            'rgba(156, 163, 175, 0.8)',
+                        ],
+                        borderColor: [
+                            'rgba(34, 197, 94, 0.8)',
+                            'rgba(239, 68, 68, 0.8)',
+                            'rgba(156, 163, 175, 0.8)',
+                        ],
+                        borderWidth: 1,
+                    },
+                ],
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: {
+                        position: 'top',
+                    },
+                    title: {
+                        display: true,
+                        text: '게임 승률',
+                    },
+                },
+            },
+        });
+    }
 });
 
 // 키값
@@ -47,6 +95,7 @@ let characterName = '';
 
 // OUID 가져오기
 async function getOuid(nickName) {
+    characterName = nickName;
     let ouIdURL = `https://open.api.nexon.com/fconline/v1/id?nickname=${nickName}`;
     try {
         let response = await fetch(ouIdURL, {
@@ -71,6 +120,12 @@ async function getOuid(nickName) {
 
 //  내정보 몰아서 보기
 async function fifaUser(ouid) {
+    let rateList = {
+        win: 0,
+        lose: 0,
+        draw: 0,
+    };
+
     let userInfo = 'https://open.api.nexon.com/fconline/v1/user/basic?ouid=' + ouid;
 
     // 정보 가져오기
@@ -78,7 +133,7 @@ async function fifaUser(ouid) {
     let userMatchInfo = await userAllMatchInfo(ouid);
     let palyerList = await getAllPlayerPhoto();
 
-    let answers = fetch(userInfo, {
+    let answers = await fetch(userInfo, {
         headers: {
             'x-nxopen-api-key': API_KEY,
         },
@@ -132,17 +187,25 @@ async function fifaUser(ouid) {
                 // Apply the background color based on match result
                 if (userMatchInfo[i].matchInfo[0].matchDetail.matchResult === '승') {
                     $lastSearchResult.addClass('win');
+                    console.log(rateList.win);
+                    rateList.win += 1;
                 } else if (userMatchInfo[i].matchInfo[0].matchDetail.matchResult === '패') {
                     $lastSearchResult.addClass('lose');
+                    console.log(rateList.lose);
+                    rateList.lose += 1;
                 } else if (userMatchInfo[i].matchInfo[0].matchDetail.matchResult === '무') {
                     $lastSearchResult.addClass('draw');
+                    console.log(rateList.draw);
+                    rateList.draw += 1;
                 }
             }
-
+            console.log('rateList');
+            console.log(rateList);
             $('.userAllMatchInfo').append(`
               <div class='search-result more-list-btn' data-id="1">더보기</div>
               `);
         });
+    return rateList;
 }
 
 // 경기 최고 기록
