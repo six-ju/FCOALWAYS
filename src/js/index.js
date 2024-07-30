@@ -28,9 +28,9 @@ $(document).ready(function () {
         let nickName = $('.idinput').val().replace(/ /g, '');
         let dataId = $(this).data('id');
         let ouId = await getOuid(nickName);
-        if(dataId > 2){
-          alert('최대 30개까지 조회가능합니다');
-          return; // 함수 종료
+        if (dataId > 2) {
+            alert('최대 30개까지 조회가능합니다');
+            return; // 함수 종료
         }
         await getMoreUserMatchInfo(ouId, dataId);
         $(this).remove();
@@ -38,7 +38,7 @@ $(document).ready(function () {
         $this.prop('disabled', false); // 버튼 다시 활성화
     });
 
-    $('.goodManners').click(function() {
+    $('.goodManners').click(function () {
         $('#matchInfoModal').modal('show');
     });
 

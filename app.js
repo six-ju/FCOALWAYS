@@ -49,7 +49,6 @@ io.on('connection', (socket) => {
     });
 });
 
-
 // SQL 접속 설정
 const pool = new sql.ConnectionPool({
     user: process.env.DB_USER, // DB 사용자 이름
