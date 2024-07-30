@@ -1,4 +1,5 @@
 import fifaKey from '/config/config.js';
+const redisClient = 
 
 $(document).ready(function () {
     let win;
@@ -47,6 +48,7 @@ $(document).ready(function () {
         $('.userInfoPage').addClass('hide');
         $('.userAllMatchInfo').empty();
         let nickName = $('.idinput').val().replace(/ /g, '');
+        sessionStorage.setItem("nickname", nickName)
         let ouId = await getOuid(nickName);
         let rateList = await fifaUser(ouId);
         win = rateList.win * 10;
@@ -275,9 +277,10 @@ async function userAllMatchInfo(ouid) {
             },
         });
         let getUserMatchDetailInfo = await answers.json();
+        console.log(getUserMatchDetailInfo)
         matchList.push(getUserMatchDetailInfo);
     }
-
+    sessionStorage.setItem("matchList", JSON.stringify(matchList))
     return matchList;
 }
 
