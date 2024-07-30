@@ -28,6 +28,10 @@ $(document).ready(function () {
         let nickName = $('.idinput').val().replace(/ /g, '');
         let dataId = $(this).data('id');
         let ouId = await getOuid(nickName);
+        if(dataId > 2){
+          alert('최대 30개까지 조회가능합니다');
+          return; // 함수 종료
+        }
         await getMoreUserMatchInfo(ouId, dataId);
         $(this).remove();
         $(this).data('id', dataId + 1);
@@ -340,7 +344,7 @@ async function getMoreUserMatchInfo(ouId, dataId) {
     }
 
     $('.userAllMatchInfo').append(`
-      <div class='search-result more-list-btn' data-id="1">더보기</div>
+      <div class='search-result more-list-btn' data-id=${dataId + 1}>더보기</div>
       `);
 }
 
