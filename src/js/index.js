@@ -6,15 +6,10 @@ $(document).ready(function () {
     let lose;
     let draw;
 
-    $('#pw').click(async function () {
-        await event();
-    });
-
-    // 엔터
-    $('.idinput').on('keyup', async function (key) {
-        if (key.keyCode == 13) {
-            await event();
-        }
+    // form 이슈로 엔터 해도 적용됨
+    $('#pw').click(async function (event) {
+        event.preventDefault();
+        await searchEvent();
     });
 
     $('.admin').click(function () {
@@ -29,8 +24,8 @@ $(document).ready(function () {
         let nickName = $('.idinput').val().replace(/ /g, '');
         let dataId = $(this).data('id');
         let ouId = await getOuid(nickName);
-        if (dataId > 2) {
-            alert('최대 30개까지 조회가능합니다');
+        if (dataId >= 2) {
+            alert('최대 20개까지 조회가능합니다');
             return; // 함수 종료
         }
         await getMoreUserMatchInfo(ouId, dataId);
@@ -39,11 +34,20 @@ $(document).ready(function () {
         $this.prop('disabled', false); // 버튼 다시 활성화
     });
 
-    $('.goodManners').click(function () {
-        $('#matchInfoModal').modal('show');
+    $(document).on('click', '.search-result', async function () {
+        let id = $(this).attr('id');
+        let list = sessionStorage.getItem("matchList");
+        let matchList = JSON.parse(list);  // 배열일 경우, 기본값을 빈 배열로 설정
+        
+        list = sessionStorage.getItem("matchListMore");
+        let matchListMore = JSON.parse(list);
+        matchList = matchList.concat(matchListMore);
+
+        await getMatchDetil(id, matchList)
+        console.log(matchList)
     });
 
-    async function event() {
+    async function searchEvent() {
         $('.notFoundNickName').html('');
         $('.userInfoPage').addClass('hide');
         $('.userAllMatchInfo').empty();
@@ -175,7 +179,7 @@ async function fifaUser(ouid) {
                     userMatchInfo[i].matchInfo[1] = temp;
                 }
                 $('.userAllMatchInfo').append(`
-                    <div class = 'search-result'>
+                    <div class = 'search-result' id='${userMatchInfo[i].matchId}'>
                       <div class = "date-name-score-center">
                         <p> ${userMatchInfo[i].matchDate.split('T')[0]}</p>
                         <div class = "nickname-score">
@@ -197,20 +201,15 @@ async function fifaUser(ouid) {
                 // Apply the background color based on match result
                 if (userMatchInfo[i].matchInfo[0].matchDetail.matchResult === '승') {
                     $lastSearchResult.addClass('win');
-                    console.log(rateList.win);
                     rateList.win += 1;
                 } else if (userMatchInfo[i].matchInfo[0].matchDetail.matchResult === '패') {
                     $lastSearchResult.addClass('lose');
-                    console.log(rateList.lose);
                     rateList.lose += 1;
                 } else if (userMatchInfo[i].matchInfo[0].matchDetail.matchResult === '무') {
                     $lastSearchResult.addClass('draw');
-                    console.log(rateList.draw);
                     rateList.draw += 1;
                 }
             }
-            console.log('rateList');
-            console.log(rateList);
             $('.userAllMatchInfo').append(`
               <div class='search-result more-list-btn' data-id="1">더보기</div>
               `);
@@ -319,7 +318,7 @@ async function getMoreUserMatchInfo(ouId, dataId) {
             matchList[i].matchInfo[1] = temp;
         }
         $('.userAllMatchInfo').append(`
-          <div class = 'search-result'>
+          <div class = 'search-result' id='${matchList[i].matchId}'>
             <div class = "date-name-score-center">
               <p> ${matchList[i].matchDate.split('T')[0]}</p>
               <div class = "nickname-score">
@@ -346,9 +345,7 @@ async function getMoreUserMatchInfo(ouId, dataId) {
         }
     }
 
-    $('.userAllMatchInfo').append(`
-      <div class='search-result more-list-btn' data-id=${dataId + 1}>더보기</div>
-      `);
+    sessionStorage.setItem("matchListMore", JSON.stringify(matchList))
 }
 
 // 모든 선수 이미지 가져오기
@@ -377,4 +374,13 @@ async function getAllPlayerPhoto() {
     });
 
     return playerData;
+}
+
+// 매치클릭시 디테일 매치정보 보여주기
+async function getMatchDetil(id, matchList){
+    for(let i = 0; i <= matchList.length; i++){
+        if(matchList[i].matchId = id){
+            
+        }
+    }
 }

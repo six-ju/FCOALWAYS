@@ -1,3 +1,4 @@
 # .gitignore 파일에 config.js 추가
 node_modules/
 src/config/config.js
+.env
