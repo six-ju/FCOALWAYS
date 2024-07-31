@@ -1,20 +1,16 @@
 import fifaKey from '/config/config.js';
-const redisClient = 
-
-$(document).ready(function () {
+const redisClient = $(document).ready(function () {
     let win;
     let lose;
     let draw;
 
-    $('#pw').click(async function () {
-        await event();
-    });
-
-    // 엔터
-    $('.idinput').on('keyup', async function (key) {
-        if (key.keyCode == 13) {
-            await event();
-        }
+    // form 이슈로 엔터 해도 적용됨
+    $('#pw').click(async function (event) {
+        event.preventDefault();
+        let $this = $(this); // 클릭된 버튼을 참조
+        $this.prop('disabled', true); // 버튼 비활성화
+        await searchEvent();
+        $this.prop('disabled', false); // 버튼 다시 활성화
     });
 
     $('.admin').click(function () {
@@ -29,8 +25,8 @@ $(document).ready(function () {
         let nickName = $('.idinput').val().replace(/ /g, '');
         let dataId = $(this).data('id');
         let ouId = await getOuid(nickName);
-        if (dataId > 2) {
-            alert('최대 30개까지 조회가능합니다');
+        if (dataId >= 2) {
+            alert('최대 20개까지 조회가능합니다');
             return; // 함수 종료
         }
         await getMoreUserMatchInfo(ouId, dataId);
@@ -39,16 +35,149 @@ $(document).ready(function () {
         $this.prop('disabled', false); // 버튼 다시 활성화
     });
 
-    $('.goodManners').click(function () {
-        $('#matchInfoModal').modal('show');
+    $(document).on('click', '.search-result', async function () {
+        let id = $(this).attr('id');
+        let list = sessionStorage.getItem('matchList');
+        let matchList = JSON.parse(list); // 배열일 경우, 기본값을 빈 배열로 설정
+
+        list = sessionStorage.getItem('matchListMore');
+        let matchListMore = JSON.parse(list);
+        matchList = matchList.concat(matchListMore);
+
+        await getMatchDetil(id, matchList);
+
+        const ctx = document.getElementById('shootRateChart').getContext('2d');
+
+        const shootRateChart = new Chart(ctx, {
+            type: 'doughnut',
+            radius: "33%",
+            data: {
+                labels: ['승리', '패배', '무승부'],
+                datasets: [
+                    {
+                        label: '게임 결과',
+                        data: [10, 40, 50],
+                        backgroundColor: [
+                            'rgba(34, 197, 94, 0.8)',
+                            'rgba(239, 68, 68, 0.8)',
+                            'rgba(156, 163, 175, 0.8)',
+                        ],
+                        borderColor: [
+                            'rgba(34, 197, 94, 0.8)',
+                            'rgba(239, 68, 68, 0.8)',
+                            'rgba(156, 163, 175, 0.8)',
+                        ],
+                        borderWidth: 1,
+                    },
+                ],
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: true,
+                plugins: {
+                    legend: {
+                        position: 'top',
+                    },
+                    title: {
+                        display: true,
+                        text: '게임 승률',
+                    },
+                },
+            },
+        });
+        let atx = document.getElementById('passRateChart').getContext('2d');
+
+        const passRateChart = new Chart(atx, {
+            type: 'doughnut',
+            radius: "33%",
+            data: {
+                labels: ['승리', '패배', '무승부'],
+                datasets: [
+                    {
+                        label: '게임 결과',
+                        data: [10, 40, 50],
+                        backgroundColor: [
+                            'rgba(34, 197, 94, 0.8)',
+                            'rgba(239, 68, 68, 0.8)',
+                            'rgba(156, 163, 175, 0.8)',
+                        ],
+                        borderColor: [
+                            'rgba(34, 197, 94, 0.8)',
+                            'rgba(239, 68, 68, 0.8)',
+                            'rgba(156, 163, 175, 0.8)',
+                        ],
+                        borderWidth: 1,
+                    },
+                ],
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: true,
+                plugins: {
+                    legend: {
+                        position: 'top',
+                    },
+                    title: {
+                        display: true,
+                        text: '게임 승률',
+                    },
+                },
+            },
+        });
+        let btx = document.getElementById('tackleRateChart').getContext('2d');
+
+        const tackleRateChart = new Chart(btx, {
+            type: 'doughnut',
+            radius: "33%",
+            data: {
+                labels: ['승리', '패배', '무승부'],
+                datasets: [
+                    {
+                        label: '게임 결과',
+                        data: [10, 40, 50],
+                        backgroundColor: [
+                            'rgba(34, 197, 94, 0.8)',
+                            'rgba(239, 68, 68, 0.8)',
+                            'rgba(156, 163, 175, 0.8)',
+                        ],
+                        borderColor: [
+                            'rgba(34, 197, 94, 0.8)',
+                            'rgba(239, 68, 68, 0.8)',
+                            'rgba(156, 163, 175, 0.8)',
+                        ],
+                        borderWidth: 1,
+                    },
+                ],
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: true,
+                plugins: {
+                    legend: {
+                        position: 'top',
+                    },
+                    title: {
+                        display: true,
+                        text: '게임 승률',
+                    },
+                },
+            },
+        });
+        console.log(matchList);
     });
 
-    async function event() {
+    $(document).on('click', '.btn-close', async function () {
+        console.log(123)
+        $('.modal-body').empty();
+        $('#matchInfoModal').css('display','none');
+    });
+
+    async function searchEvent() {
         $('.notFoundNickName').html('');
         $('.userInfoPage').addClass('hide');
         $('.userAllMatchInfo').empty();
         let nickName = $('.idinput').val().replace(/ /g, '');
-        sessionStorage.setItem("nickname", nickName)
+        sessionStorage.setItem('nickname', nickName);
         let ouId = await getOuid(nickName);
         let rateList = await fifaUser(ouId);
         win = rateList.win * 10;
@@ -175,7 +304,7 @@ async function fifaUser(ouid) {
                     userMatchInfo[i].matchInfo[1] = temp;
                 }
                 $('.userAllMatchInfo').append(`
-                    <div class = 'search-result'>
+                    <div class = 'search-result' id='${userMatchInfo[i].matchId}'>
                       <div class = "date-name-score-center">
                         <p> ${userMatchInfo[i].matchDate.split('T')[0]}</p>
                         <div class = "nickname-score">
@@ -197,20 +326,15 @@ async function fifaUser(ouid) {
                 // Apply the background color based on match result
                 if (userMatchInfo[i].matchInfo[0].matchDetail.matchResult === '승') {
                     $lastSearchResult.addClass('win');
-                    console.log(rateList.win);
                     rateList.win += 1;
                 } else if (userMatchInfo[i].matchInfo[0].matchDetail.matchResult === '패') {
                     $lastSearchResult.addClass('lose');
-                    console.log(rateList.lose);
                     rateList.lose += 1;
                 } else if (userMatchInfo[i].matchInfo[0].matchDetail.matchResult === '무') {
                     $lastSearchResult.addClass('draw');
-                    console.log(rateList.draw);
                     rateList.draw += 1;
                 }
             }
-            console.log('rateList');
-            console.log(rateList);
             $('.userAllMatchInfo').append(`
               <div class='search-result more-list-btn' data-id="1">더보기</div>
               `);
@@ -277,10 +401,10 @@ async function userAllMatchInfo(ouid) {
             },
         });
         let getUserMatchDetailInfo = await answers.json();
-        console.log(getUserMatchDetailInfo)
+        console.log(getUserMatchDetailInfo);
         matchList.push(getUserMatchDetailInfo);
     }
-    sessionStorage.setItem("matchList", JSON.stringify(matchList))
+    sessionStorage.setItem('matchList', JSON.stringify(matchList));
     return matchList;
 }
 
@@ -319,7 +443,7 @@ async function getMoreUserMatchInfo(ouId, dataId) {
             matchList[i].matchInfo[1] = temp;
         }
         $('.userAllMatchInfo').append(`
-          <div class = 'search-result'>
+          <div class = 'search-result' id='${matchList[i].matchId}'>
             <div class = "date-name-score-center">
               <p> ${matchList[i].matchDate.split('T')[0]}</p>
               <div class = "nickname-score">
@@ -346,9 +470,7 @@ async function getMoreUserMatchInfo(ouId, dataId) {
         }
     }
 
-    $('.userAllMatchInfo').append(`
-      <div class='search-result more-list-btn' data-id=${dataId + 1}>더보기</div>
-      `);
+    sessionStorage.setItem('matchListMore', JSON.stringify(matchList));
 }
 
 // 모든 선수 이미지 가져오기
@@ -377,4 +499,29 @@ async function getAllPlayerPhoto() {
     });
 
     return playerData;
+}
+
+// 매치클릭시 디테일 매치정보 보여주기
+async function getMatchDetil(id, matchList) {
+    console.log(id);
+    for (let i = 0; i <= matchList.length; i++) {
+        if (matchList[i].matchId == id) {
+            $('.modal-body').append(`
+                <div>
+                     <span class='scoreSpan'> 
+                        ${matchList[i].matchInfo[0].nickname}  
+                            ${matchList[i].matchInfo[0].shoot.goalTotal}  
+                                -  
+                            ${matchList[i].matchInfo[1].shoot.goalTotal}  
+                        ${matchList[i].matchInfo[1].nickname}
+                    </span>
+                </div>
+                `);
+
+            $('#matchInfoModal').show();
+
+            break;
+        }
+    }
+    return 0;
 }

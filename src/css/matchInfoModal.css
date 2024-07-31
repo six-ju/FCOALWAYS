@@ -1,0 +1,33 @@
+.modal-content{
+    background-color: rgba(0, 0, 0, 0.9);
+}
+
+.modal-title{
+    color: white;
+}
+
+.modal-header .btn-close {
+    --bs-btn-close-color: white;
+}
+
+.modal-header{
+    border-bottom: var(--bs-modal-header-border-width) solid #3b3d3f !important;
+}
+
+.scoreSpan{
+    color: white;
+}
+
+.modal-body canvas {
+    width: 40% !important;
+    aspect-ratio: 1 / 1 !important;
+    height: 33% !important;
+    padding: 12px;
+}
+
+.chart{
+    display: flex;
+    flex-wrap: nowrap;
+    justify-content: center;
+    padding: 20px;
+}

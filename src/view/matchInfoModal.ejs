@@ -1,12 +1,23 @@
+<link rel="stylesheet" type="text/css" href="../css/matchInfoModal.css" />
+
 <div id="matchInfoModal" class="modal slide-modal" tabindex="-1">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title">경기 정보</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                <h5 class="modal-title">Match Detail</h5>
+                <button
+                    type="button"
+                    class="btn-close"
+                    data-bs-dismiss="modal"
+                    aria-label="Close"
+                ></button>
             </div>
             <div class="modal-body">
-                <p>This is the match info modal!</p>
+                <div class="chart">
+                    <canvas id="shootRateChart"></canvas>
+                    <canvas id="passRateChart"></canvas>
+                    <canvas id="tackleRateChart"></canvas>
+                </div>
             </div>
         </div>
     </div>
