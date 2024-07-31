@@ -85,9 +85,9 @@ const redisClient = $(document).ready(function () {
                 },
             },
         });
-        ctx = document.getElementById('passRateChart').getContext('2d');
+        let atx = document.getElementById('passRateChart').getContext('2d');
 
-        const passRateChart = new Chart(ctx, {
+        const passRateChart = new Chart(atx, {
             type: 'doughnut',
             radius: "33%",
             data: {
@@ -124,9 +124,9 @@ const redisClient = $(document).ready(function () {
                 },
             },
         });
-        ctx = document.getElementById('tackleRateChart').getContext('2d');
+        let btx = document.getElementById('tackleRateChart').getContext('2d');
 
-        const tackleRateChart = new Chart(ctx, {
+        const tackleRateChart = new Chart(btx, {
             type: 'doughnut',
             radius: "33%",
             data: {

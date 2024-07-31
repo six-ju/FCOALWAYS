@@ -19,7 +19,15 @@
 }
 
 .modal-body canvas {
-    width: 33% !important;
+    width: 40% !important;
     aspect-ratio: 1 / 1 !important;
     height: 33% !important;
+    padding: 12px;
+}
+
+.chart{
+    display: flex;
+    flex-wrap: nowrap;
+    justify-content: center;
+    padding: 20px;
 }
