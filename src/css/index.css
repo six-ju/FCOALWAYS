@@ -1,3 +1,10 @@
+@font-face {
+    font-family: 'SUIT-Regular';
+    src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_suit@1.0/SUIT-Regular.woff2') format('woff2');
+    font-weight: normal;
+    font-style: normal;
+}
+
 body {
     background-color: black;
     margin: 0 15% 0 15%;
@@ -152,6 +159,8 @@ p {
     background-color: rgba(34, 197, 94, 0.5); /* 기본 배경색 */
     transition: background-color 0.3s ease; /* 부드러운 색상 전환 효과 */
     border-radius: 20px;
+    font-family: 'SUIT-Regular';
+    font-size: 19px;
 }
 
 .search-result.win {
@@ -246,4 +255,10 @@ p {
     color: white;
     text-align: center;
     pointer-events: none; /* 클릭 이벤트 방지 */
+}
+
+.showUserInfoTable{
+    font-family: 'SUIT-Regular';
+    font-size: 19px;
+    padding: 15px;
 }

@@ -1,6 +1,17 @@
+@font-face {
+    font-family: 'SUIT-Regular';
+    src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_suit@1.0/SUIT-Regular.woff2') format('woff2');
+    font-weight: normal;
+    font-style: normal;
+}
+
+.modal{
+    --bs-modal-width: 810px;
+}
+
 .modal-content{
     background-color: rgba(0, 0, 0, 0.9);
-    width: 800px;
+    width: 950px;
 }
 
 .modal-title{
@@ -22,6 +33,7 @@
 
 .scoreSpan{
     color: white;
+    position: relative;
 }
 
 .modal-body canvas {
@@ -52,19 +64,28 @@
 .possesseionPercentage{
     color: white;
     position: absolute;
-    top: 94px;
-    left: 131px;
+    top: 146px;
+    left: 151px;
 }
 
 .shootPercentage{
     color: white;
     position: absolute;
-    top: 94px;
+    top:  146px;
 }
 
 .passPercentage{
     color: white;
     position: absolute;
-    top: 94px;
-    right: 129px;
+    top:  146px;
+    right: 151px;
 }
+
+.detail-score{
+    display: flex;
+    justify-content: center;
+    font-family: 'SUIT-Regular';
+    font-size: 26px;
+    text-align: center;
+}
+

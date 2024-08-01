@@ -48,6 +48,7 @@ $(document).ready(function () {
         matchList = matchList.concat(matchListMore);
 
         let selectMatchDetail = await getMatchDetil(id, matchList);
+        console.log(selectMatchDetail);
 
         if (selectMatchDetail.matchInfo[0].nickname != nickName) {
             let tmp = selectMatchDetail.matchInfo[0];
@@ -76,7 +77,12 @@ $(document).ready(function () {
         $('.shootPercentage').text(Math.round(shootPercentage) + '%');
         $('.passPercentage').text(Math.round(passPercentage) + '%');
 
-        await createDoughnutChart('possesseionRateChart',possessionData,backgroundColors,borderColors);
+        await createDoughnutChart(
+            'possesseionRateChart',
+            possessionData,
+            backgroundColors,
+            borderColors,
+        );
         await createDoughnutChart('shootRateChart', shootData, backgroundColors, borderColors);
         await createDoughnutChart('passRateChart', passData, backgroundColors, borderColors);
     });
@@ -84,12 +90,16 @@ $(document).ready(function () {
     // 모달 닫기 버튼
     $(document).on('click', '.btn-close', async function () {
         $('.scoreSpan').empty();
+        $('.matchDetailInfo').empty();
         $('#matchInfoModal').css('display', 'none');
     });
 
-    $(document).click(function(event) {
+    $(document).click(function (event) {
         var target = $(event.target);
-        if (!target.closest('#matchInfoModal .modal-content').length && $('#matchInfoModal').is(':visible')) {
+        if (
+            !target.closest('#matchInfoModal .modal-content').length &&
+            $('#matchInfoModal').is(':visible')
+        ) {
             $('#matchInfoModal').modal('hide');
         }
     });
@@ -103,8 +113,8 @@ $(document).ready(function () {
         sessionStorage.setItem('nickname', nickName);
         let ouId = await getOuid(nickName);
 
-        if(ouId == undefined){
-            alert("사용자를 찾지 못했습니다. 다시 입력해주세요.")
+        if (ouId == undefined) {
+            alert('사용자를 찾지 못했습니다. 다시 입력해주세요.');
             return false;
         }
 
@@ -467,17 +477,81 @@ async function getMatchDetil(id, matchList) {
     let selectDetailId = [];
     for (let i = 0; i <= matchList.length; i++) {
         if (matchList[i].matchId == id) {
-            $('.modal-body').append(`
+            // 검색 유저가 무조건 0번째로 변경함
+            if (matchList[i].matchInfo[0].nickname != characterName) {
+                let temp = matchList[i].matchInfo[0];
+                matchList[i].matchInfo[0] = matchList[i].matchInfo[1];
+                matchList[i].matchInfo[1] = temp;
+            }
+
+            // 키보드 스틱 유저 분리
+            let userPlayType =
+                matchList[i].matchInfo[0].matchDetail.controller == 'keyboard' ? '⌨️' : '🎮';
+            let oppenPlayType =
+                matchList[i].matchInfo[1].matchDetail.controller == 'keyboard' ? '⌨️' : '🎮';
+
+            $('.detail-score').append(`
+                <span class='scoreSpan'> 
+                <span class='playType'>${userPlayType}</span>
+                    ${matchList[i].matchInfo[0].nickname}  
+                        ${matchList[i].matchInfo[0].shoot.goalTotal}  
+                            -  
+                        ${matchList[i].matchInfo[1].shoot.goalTotal}  
+                    ${matchList[i].matchInfo[1].nickname}
+                    <span class='playType'>${oppenPlayType}</span>
+                </span>
+            `);
+
+            Math.floor(1.777 * 10) / 10;
+            let userAverage =
+                Math.floor(matchList[i].matchInfo[0].matchDetail.averageRating * 2 * 10) / 10;
+            let oppenAverage =
+                Math.floor(matchList[i].matchInfo[1].matchDetail.averageRating * 2 * 10) / 10;
+
+            $('.matchDetailInfo').append(`
                 <div>
-                     <span class='scoreSpan'> 
-                        ${matchList[i].matchInfo[0].nickname}  
-                            ${matchList[i].matchInfo[0].shoot.goalTotal}  
-                                -  
-                            ${matchList[i].matchInfo[1].shoot.goalTotal}  
-                        ${matchList[i].matchInfo[1].nickname}
-                    </span>
+                    ${userAverage} <span> 경기 평점 </span> <span> ${oppenAverage} </span>
                 </div>
-                `);
+                <div>
+                    ${matchList[i].matchInfo[0].shoot.goalTotal} <span> 골 </span> <span> ${matchList[i].matchInfo[1].shoot.goalTotal} </span>
+                </div>
+                <div>
+                    ${matchList[i].matchInfo[0].shoot.shootTotal} <span> 슛 </span> <span> ${matchList[i].matchInfo[1].shoot.shootTotal} </span>
+                </div>
+                <div>
+                    ${matchList[i].matchInfo[0].shoot.effectiveShootTotal} <span> 유효 슛 </span> <span> ${matchList[i].matchInfo[1].shoot.effectiveShootTotal} </span>
+                </div>
+                <div>
+                    ${matchList[i].matchInfo[0].pass.passTry} <span> 패스 </span> <span> ${matchList[i].matchInfo[1].pass.passTry} </span>
+                </div>
+                <div>
+                    ${matchList[i].matchInfo[0].defence.tackleTry} <span> 태클 </span> <span> ${matchList[i].matchInfo[1].defence.tackleTry} </span>
+                </div>
+                <div>
+                    ${matchList[i].matchInfo[0].matchDetail.foul} <span> 파울 </span> <span> ${matchList[i].matchInfo[1].matchDetail.foul} </span>
+                </div>
+                <div>
+                    ${matchList[i].matchInfo[0].matchDetail.yellowCards} <span> 엘로카드 </span> <span> ${matchList[i].matchInfo[1].matchDetail.yellowCards} </span>
+                </div>
+                <div>
+                    ${matchList[i].matchInfo[0].matchDetail.redCards} <span> 레드카드 </span> <span> ${matchList[i].matchInfo[1].matchDetail.redCards} </span>
+                </div>
+                <div>
+                    ${matchList[i].matchInfo[0].shoot.shootFreekick} <span> 프리킥 </span> <span> ${matchList[i].matchInfo[1].shoot.shootFreekick} </span>
+                </div>
+                <div>
+                    ${matchList[i].matchInfo[0].matchDetail.cornerKick} <span> 코너킥 </span> <span> ${matchList[i].matchInfo[1].matchDetail.cornerKick} </span>
+                </div>
+                <div>
+                    ${matchList[i].matchInfo[0].shoot.shootPenaltyKick} <span> 패널티킥 </span> <span> ${matchList[i].matchInfo[1].shoot.shootPenaltyKick} </span>
+                </div>
+                <div>
+                    ${matchList[i].matchInfo[0].matchDetail.offsideCount} <span> 오프사이드 </span> <span> ${matchList[i].matchInfo[1].matchDetail.offsideCount} </span>
+                </div>
+                <div>
+                    ${matchList[i].matchInfo[0].matchDetail.systemPause} <span> 일시정지 </span> <span> ${matchList[i].matchInfo[1].matchDetail.systemPause} </span>
+                </div>
+            `);
 
             $('#matchInfoModal').show();
             selectDetailId.push(matchList[i]);
