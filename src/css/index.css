@@ -271,3 +271,12 @@ p {
     top: 360px;
     right: 910px;
 }
+
+.fcologo{
+    aspect-ratio: 1 / 1;
+    height: 77px;
+    padding: 10px;
+    position: absolute;
+    left: 50px;
+    margin-top: 10px;
+}

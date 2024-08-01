@@ -16,7 +16,7 @@ $(document).ready(function () {
     $this.prop("disabled", true); // 버튼 비활성화
 
     await searchEvent();
-    
+
     $('.loading').addClass('hide')
     $this.prop("disabled", false); // 버튼 다시 활성화
   });
@@ -150,6 +150,11 @@ $(document).ready(function () {
 
     const winRateChart = new Chart(ctx, {
       type: "doughnut",
+      labels: [
+        '승',
+        '패',
+        '무'
+      ],
       data: {
         datasets: [
           {
@@ -179,6 +184,9 @@ $(document).ready(function () {
           title: {
             display: true,
             text: "게임 승률",
+          },
+          tooltip: {
+            enabled: false // 툴팁 비활성화
           },
         },
       },
