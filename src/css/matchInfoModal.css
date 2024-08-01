@@ -1,20 +1,21 @@
 @font-face {
     font-family: 'SUIT-Regular';
-    src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_suit@1.0/SUIT-Regular.woff2') format('woff2');
+    src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_suit@1.0/SUIT-Regular.woff2')
+        format('woff2');
     font-weight: normal;
     font-style: normal;
 }
 
-.modal{
+.modal {
     --bs-modal-width: 810px;
 }
 
-.modal-content{
+.modal-content {
     background-color: rgba(0, 0, 0, 0.9);
     width: 950px;
 }
 
-.modal-title{
+.modal-title {
     color: white;
 }
 
@@ -27,11 +28,11 @@
     top: 0px;
 }
 
-.modal-header{
+.modal-header {
     border-bottom: var(--bs-modal-header-border-width) solid #3b3d3f !important;
 }
 
-.scoreSpan{
+.scoreSpan {
     color: white;
     position: relative;
 }
@@ -44,44 +45,44 @@
     margin-right: 8%;
 }
 
-.chart{
+.chart {
     display: flex;
     flex-wrap: nowrap;
     justify-content: center;
     padding: 20px;
 }
 
-.chart-p{
+.chart-p {
     width: 33.3%;
     text-align: center;
 }
 
-.chart-name-div{
+.chart-name-div {
     display: flex;
     justify-content: center;
 }
 
-.possesseionPercentage{
+.possesseionPercentage {
     color: white;
     position: absolute;
     top: 146px;
     left: 151px;
 }
 
-.shootPercentage{
+.shootPercentage {
     color: white;
     position: absolute;
-    top:  146px;
+    top: 146px;
 }
 
-.passPercentage{
+.passPercentage {
     color: white;
     position: absolute;
-    top:  146px;
+    top: 146px;
     right: 151px;
 }
 
-.detail-score{
+.detail-score {
     display: flex;
     justify-content: center;
     font-family: 'SUIT-Regular';
@@ -89,3 +90,14 @@
     text-align: center;
 }
 
+.matchInfoClass {
+    border-bottom-color: #000000ab;
+    border-bottom-style: inset;
+    border-bottom-width: 2px;
+    padding: 8px;
+    margin-bottom: 15px;
+    margin-top: 15px;
+    display: flex;
+    flex-wrap: nowrap;
+    justify-content: space-between;
+}

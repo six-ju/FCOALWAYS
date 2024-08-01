@@ -508,47 +508,56 @@ async function getMatchDetil(id, matchList) {
             let oppenAverage =
                 Math.floor(matchList[i].matchInfo[1].matchDetail.averageRating * 2 * 10) / 10;
 
+                if(userAverage > oppenAverage) {
+                    $('.detail-left').addClass('asd')
+                }else{
+                    $('.detail-left').addClass('asd')
+                }
+
+
+
+            // 리펙토링 필요
             $('.matchDetailInfo').append(`
-                <div>
-                    ${userAverage} <span> 경기 평점 </span> <span> ${oppenAverage} </span>
+                <div class="matchInfoClass">
+                    <span class='detail-left'> ${userAverage} / 10 </span> <span> 경기 평점 </span> <span class='detail-right'> ${oppenAverage} / 10 </span>
                 </div>
-                <div>
+                <div class="matchInfoClass">
                     ${matchList[i].matchInfo[0].shoot.goalTotal} <span> 골 </span> <span> ${matchList[i].matchInfo[1].shoot.goalTotal} </span>
                 </div>
-                <div>
+                <div class="matchInfoClass">
                     ${matchList[i].matchInfo[0].shoot.shootTotal} <span> 슛 </span> <span> ${matchList[i].matchInfo[1].shoot.shootTotal} </span>
                 </div>
-                <div>
+                <div class="matchInfoClass">
                     ${matchList[i].matchInfo[0].shoot.effectiveShootTotal} <span> 유효 슛 </span> <span> ${matchList[i].matchInfo[1].shoot.effectiveShootTotal} </span>
                 </div>
-                <div>
+                <div class="matchInfoClass">
                     ${matchList[i].matchInfo[0].pass.passTry} <span> 패스 </span> <span> ${matchList[i].matchInfo[1].pass.passTry} </span>
                 </div>
-                <div>
+                <div class="matchInfoClass">
                     ${matchList[i].matchInfo[0].defence.tackleTry} <span> 태클 </span> <span> ${matchList[i].matchInfo[1].defence.tackleTry} </span>
                 </div>
-                <div>
+                <div class="matchInfoClass">
                     ${matchList[i].matchInfo[0].matchDetail.foul} <span> 파울 </span> <span> ${matchList[i].matchInfo[1].matchDetail.foul} </span>
                 </div>
-                <div>
+                <div class="matchInfoClass">
                     ${matchList[i].matchInfo[0].matchDetail.yellowCards} <span> 엘로카드 </span> <span> ${matchList[i].matchInfo[1].matchDetail.yellowCards} </span>
                 </div>
-                <div>
+                <div class="matchInfoClass">
                     ${matchList[i].matchInfo[0].matchDetail.redCards} <span> 레드카드 </span> <span> ${matchList[i].matchInfo[1].matchDetail.redCards} </span>
                 </div>
-                <div>
+                <div class="matchInfoClass">
                     ${matchList[i].matchInfo[0].shoot.shootFreekick} <span> 프리킥 </span> <span> ${matchList[i].matchInfo[1].shoot.shootFreekick} </span>
                 </div>
-                <div>
+                <div class="matchInfoClass">
                     ${matchList[i].matchInfo[0].matchDetail.cornerKick} <span> 코너킥 </span> <span> ${matchList[i].matchInfo[1].matchDetail.cornerKick} </span>
                 </div>
-                <div>
+                <div class="matchInfoClass">
                     ${matchList[i].matchInfo[0].shoot.shootPenaltyKick} <span> 패널티킥 </span> <span> ${matchList[i].matchInfo[1].shoot.shootPenaltyKick} </span>
                 </div>
-                <div>
+                <div class="matchInfoClass">
                     ${matchList[i].matchInfo[0].matchDetail.offsideCount} <span> 오프사이드 </span> <span> ${matchList[i].matchInfo[1].matchDetail.offsideCount} </span>
                 </div>
-                <div>
+                <div class="matchInfoClass">
                     ${matchList[i].matchInfo[0].matchDetail.systemPause} <span> 일시정지 </span> <span> ${matchList[i].matchInfo[1].matchDetail.systemPause} </span>
                 </div>
             `);
