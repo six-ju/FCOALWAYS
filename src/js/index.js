@@ -10,9 +10,14 @@ $(document).ready(function () {
   $("#pw").click(async function (event) {
     event.preventDefault();
 
+    // 로딩 gif 실행
+    $('.loading').removeClass('hide')
     let $this = $(this); // 클릭된 버튼을 참조
     $this.prop("disabled", true); // 버튼 비활성화
+
     await searchEvent();
+    
+    $('.loading').addClass('hide')
     $this.prop("disabled", false); // 버튼 다시 활성화
   });
 
