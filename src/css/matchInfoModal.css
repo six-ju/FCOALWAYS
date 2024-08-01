@@ -100,4 +100,16 @@
     display: flex;
     flex-wrap: nowrap;
     justify-content: space-between;
+    font-size: 18px;
+    font-weight: 900;
+}
+
+.win{
+    color: rgba(34, 197, 94, 0.8); /* 승리 시 호버 상태 색상 */
+    border-bottom-color: rgb(34, 197, 94, 0.8);
+}
+
+.lose{
+    color: rgba(239, 68, 68, 0.8); /* 승리 시 호버 상태 색상 */
+    border-bottom-color: rgb(239, 68, 68, 0.8);
 }

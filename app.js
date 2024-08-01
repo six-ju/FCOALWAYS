@@ -34,20 +34,20 @@ app.use(
     }),
 );
 
-const io = require('socket.io')(4000, {
-    cors: {
-        origin: '*',
-        methods: ['GET', 'POST'],
-    },
-});
+// const io = require('socket.io')(4000, {
+//     cors: {
+//         origin: '*',
+//         methods: ['GET', 'POST'],
+//     },
+// });
 
-io.on('connection', (socket) => {
-    console.log('새로운 소켓이 연결됐어요!');
+// io.on('connection', (socket) => {
+//     console.log('새로운 소켓이 연결됐어요!');
 
-    socket.on('message', (data) => {
-        console.log(data);
-    });
-});
+//     socket.on('message', (data) => {
+//         console.log(data);
+//     });
+// });
 
 // SQL 접속 설정
 const pool = new sql.ConnectionPool({
