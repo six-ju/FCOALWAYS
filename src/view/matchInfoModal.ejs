@@ -1,6 +1,6 @@
 <link rel="stylesheet" type="text/css" href="../css/matchInfoModal.css" />
 
-<div id="matchInfoModal" class="modal slide-modal" tabindex="-1">
+<div id="matchInfoModal" class="modal slide-modal" tabindex="-1" data-bs-backdrop="true">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
@@ -10,13 +10,24 @@
                     class="btn-close"
                     data-bs-dismiss="modal"
                     aria-label="Close"
-                ></button>
+                >x</button>
             </div>
             <div class="modal-body">
                 <div class="chart">
+                    <!-- 점유율 -->
+                    <canvas id="possesseionRateChart"></canvas>
+                    <div class="possesseionPercentage"></div>
+                    <!-- 슛 정확도 -->
                     <canvas id="shootRateChart"></canvas>
+                    <div class="shootPercentage"></div>
+                    <!-- 패스 정확도 -->
                     <canvas id="passRateChart"></canvas>
-                    <canvas id="tackleRateChart"></canvas>
+                    <div class="passPercentage"></div>
+                </div>
+                <div class="chart-name-div">
+                    <p class="chart-p">볼 점유율</p>
+                    <p class="chart-p">슛 정확도</p>
+                    <p class="chart-p">패스 정확도</p>
                 </div>
             </div>
         </div>

@@ -1,12 +1,15 @@
 import fifaKey from '/config/config.js';
-const redisClient = $(document).ready(function () {
+
+$(document).ready(function () {
     let win;
     let lose;
     let draw;
+    let nickName;
 
     // form 이슈로 엔터 해도 적용됨
     $('#pw').click(async function (event) {
         event.preventDefault();
+
         let $this = $(this); // 클릭된 버튼을 참조
         $this.prop('disabled', true); // 버튼 비활성화
         await searchEvent();
@@ -22,7 +25,6 @@ const redisClient = $(document).ready(function () {
     $(document).on('click', '.more-list-btn', async function () {
         let $this = $(this); // 클릭된 버튼을 참조
         $this.prop('disabled', true); // 버튼 비활성화
-        let nickName = $('.idinput').val().replace(/ /g, '');
         let dataId = $(this).data('id');
         let ouId = await getOuid(nickName);
         if (dataId >= 2) {
@@ -35,6 +37,7 @@ const redisClient = $(document).ready(function () {
         $this.prop('disabled', false); // 버튼 다시 활성화
     });
 
+    // 매치 디테일 정보 얻기 보기위함 클릭
     $(document).on('click', '.search-result', async function () {
         let id = $(this).attr('id');
         let list = sessionStorage.getItem('matchList');
@@ -44,141 +47,67 @@ const redisClient = $(document).ready(function () {
         let matchListMore = JSON.parse(list);
         matchList = matchList.concat(matchListMore);
 
-        await getMatchDetil(id, matchList);
+        let selectMatchDetail = await getMatchDetil(id, matchList);
 
-        const ctx = document.getElementById('shootRateChart').getContext('2d');
+        if (selectMatchDetail.matchInfo[0].nickname != nickName) {
+            let tmp = selectMatchDetail.matchInfo[0];
+            selectMatchDetail.matchInfo[0] = selectMatchDetail.matchInfo[1];
+            selectMatchDetail.matchInfo[1] = tmp;
+        }
 
-        const shootRateChart = new Chart(ctx, {
-            type: 'doughnut',
-            radius: "33%",
-            data: {
-                labels: ['승리', '패배', '무승부'],
-                datasets: [
-                    {
-                        label: '게임 결과',
-                        data: [10, 40, 50],
-                        backgroundColor: [
-                            'rgba(34, 197, 94, 0.8)',
-                            'rgba(239, 68, 68, 0.8)',
-                            'rgba(156, 163, 175, 0.8)',
-                        ],
-                        borderColor: [
-                            'rgba(34, 197, 94, 0.8)',
-                            'rgba(239, 68, 68, 0.8)',
-                            'rgba(156, 163, 175, 0.8)',
-                        ],
-                        borderWidth: 1,
-                    },
-                ],
-            },
-            options: {
-                responsive: true,
-                maintainAspectRatio: true,
-                plugins: {
-                    legend: {
-                        position: 'top',
-                    },
-                    title: {
-                        display: true,
-                        text: '게임 승률',
-                    },
-                },
-            },
-        });
-        let atx = document.getElementById('passRateChart').getContext('2d');
+        let userShootData = selectMatchDetail.matchInfo[0].shoot.shootTotal;
+        let userEffectiveShootTotalData = selectMatchDetail.matchInfo[0].shoot.effectiveShootTotal;
+        let userPassTryData = selectMatchDetail.matchInfo[0].pass.passTry;
+        let userPassSuccessData = selectMatchDetail.matchInfo[0].pass.passSuccess;
+        let userPossessionData = selectMatchDetail.matchInfo[0].matchDetail.possession;
 
-        const passRateChart = new Chart(atx, {
-            type: 'doughnut',
-            radius: "33%",
-            data: {
-                labels: ['승리', '패배', '무승부'],
-                datasets: [
-                    {
-                        label: '게임 결과',
-                        data: [10, 40, 50],
-                        backgroundColor: [
-                            'rgba(34, 197, 94, 0.8)',
-                            'rgba(239, 68, 68, 0.8)',
-                            'rgba(156, 163, 175, 0.8)',
-                        ],
-                        borderColor: [
-                            'rgba(34, 197, 94, 0.8)',
-                            'rgba(239, 68, 68, 0.8)',
-                            'rgba(156, 163, 175, 0.8)',
-                        ],
-                        borderWidth: 1,
-                    },
-                ],
-            },
-            options: {
-                responsive: true,
-                maintainAspectRatio: true,
-                plugins: {
-                    legend: {
-                        position: 'top',
-                    },
-                    title: {
-                        display: true,
-                        text: '게임 승률',
-                    },
-                },
-            },
-        });
-        let btx = document.getElementById('tackleRateChart').getContext('2d');
+        //슛 정확도
+        let shootPercentage = (userEffectiveShootTotalData / userShootData) * 100;
+        // 패스 정확도
+        let passPercentage = (userPassSuccessData / userPassTryData) * 100;
 
-        const tackleRateChart = new Chart(btx, {
-            type: 'doughnut',
-            radius: "33%",
-            data: {
-                labels: ['승리', '패배', '무승부'],
-                datasets: [
-                    {
-                        label: '게임 결과',
-                        data: [10, 40, 50],
-                        backgroundColor: [
-                            'rgba(34, 197, 94, 0.8)',
-                            'rgba(239, 68, 68, 0.8)',
-                            'rgba(156, 163, 175, 0.8)',
-                        ],
-                        borderColor: [
-                            'rgba(34, 197, 94, 0.8)',
-                            'rgba(239, 68, 68, 0.8)',
-                            'rgba(156, 163, 175, 0.8)',
-                        ],
-                        borderWidth: 1,
-                    },
-                ],
-            },
-            options: {
-                responsive: true,
-                maintainAspectRatio: true,
-                plugins: {
-                    legend: {
-                        position: 'top',
-                    },
-                    title: {
-                        display: true,
-                        text: '게임 승률',
-                    },
-                },
-            },
-        });
-        console.log(matchList);
+        let shootData = [shootPercentage, 100 - shootPercentage];
+        let passData = [passPercentage, 100 - passPercentage];
+        let possessionData = [userPossessionData, 100 - userPossessionData];
+        let backgroundColors = ['rgba(0, 255, 13, 0.8)', 'rgba(255, 255, 255, 0.462)'];
+        let borderColors = ['rgba(0, 255, 13, 0.8)', 'rgba(255, 255, 255, 0.462)'];
+
+        $('.possesseionPercentage').text(Math.round(userPossessionData) + '%');
+        $('.shootPercentage').text(Math.round(shootPercentage) + '%');
+        $('.passPercentage').text(Math.round(passPercentage) + '%');
+
+        await createDoughnutChart('possesseionRateChart',possessionData,backgroundColors,borderColors);
+        await createDoughnutChart('shootRateChart', shootData, backgroundColors, borderColors);
+        await createDoughnutChart('passRateChart', passData, backgroundColors, borderColors);
     });
 
+    // 모달 닫기 버튼
     $(document).on('click', '.btn-close', async function () {
-        console.log(123)
-        $('.modal-body').empty();
-        $('#matchInfoModal').css('display','none');
+        $('.scoreSpan').empty();
+        $('#matchInfoModal').css('display', 'none');
     });
 
+    $(document).click(function(event) {
+        var target = $(event.target);
+        if (!target.closest('#matchInfoModal .modal-content').length && $('#matchInfoModal').is(':visible')) {
+            $('#matchInfoModal').modal('hide');
+        }
+    });
+
+    // 검색버튼 클릭시
     async function searchEvent() {
         $('.notFoundNickName').html('');
         $('.userInfoPage').addClass('hide');
         $('.userAllMatchInfo').empty();
-        let nickName = $('.idinput').val().replace(/ /g, '');
+        nickName = $('.idinput').val().replace(/ /g, '');
         sessionStorage.setItem('nickname', nickName);
         let ouId = await getOuid(nickName);
+
+        if(ouId == undefined){
+            alert("사용자를 찾지 못했습니다. 다시 입력해주세요.")
+            return false;
+        }
+
         let rateList = await fifaUser(ouId);
         win = rateList.win * 10;
         lose = rateList.lose * 10;
@@ -192,7 +121,6 @@ const redisClient = $(document).ready(function () {
         const winRateChart = new Chart(ctx, {
             type: 'doughnut',
             data: {
-                labels: ['승리', '패배', '무승부'],
                 datasets: [
                     {
                         label: '게임 결과',
@@ -221,6 +149,41 @@ const redisClient = $(document).ready(function () {
                     title: {
                         display: true,
                         text: '게임 승률',
+                    },
+                },
+            },
+        });
+    }
+
+    // 매치 리스트 클릭시 디테일의 그래프
+    function createDoughnutChart(chartId, data, backgroundColors, borderColors) {
+        const element = document.getElementById(chartId);
+        if (!element) {
+            console.error(`Element with id ${chartId} not found`);
+            return;
+        }
+
+        const ctx = element.getContext('2d');
+
+        return new Chart(ctx, {
+            type: 'doughnut',
+            data: {
+                datasets: [
+                    {
+                        label: '게임 결과',
+                        data: data,
+                        backgroundColor: backgroundColors,
+                        borderColor: borderColors,
+                        borderWidth: 1,
+                    },
+                ],
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: true,
+                plugins: {
+                    legend: {
+                        position: 'top',
                     },
                 },
             },
@@ -401,7 +364,6 @@ async function userAllMatchInfo(ouid) {
             },
         });
         let getUserMatchDetailInfo = await answers.json();
-        console.log(getUserMatchDetailInfo);
         matchList.push(getUserMatchDetailInfo);
     }
     sessionStorage.setItem('matchList', JSON.stringify(matchList));
@@ -480,7 +442,6 @@ async function getAllPlayerPhoto() {
     let userMatchInfoURL = `https://open.api.nexon.com/static/fconline/meta/spid.json`;
     let answers = await fetch(userMatchInfoURL);
     let playerId = await answers.json();
-    console.log(playerId);
     // 랜덤으로 선수 숫자가져오기
     let min = 62300;
     let max = 71214;
@@ -503,7 +464,7 @@ async function getAllPlayerPhoto() {
 
 // 매치클릭시 디테일 매치정보 보여주기
 async function getMatchDetil(id, matchList) {
-    console.log(id);
+    let selectDetailId = [];
     for (let i = 0; i <= matchList.length; i++) {
         if (matchList[i].matchId == id) {
             $('.modal-body').append(`
@@ -519,9 +480,10 @@ async function getMatchDetil(id, matchList) {
                 `);
 
             $('#matchInfoModal').show();
-
+            selectDetailId.push(matchList[i]);
             break;
         }
     }
-    return 0;
+
+    return await selectDetailId[0];
 }

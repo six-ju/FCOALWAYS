@@ -1,5 +1,6 @@
 .modal-content{
     background-color: rgba(0, 0, 0, 0.9);
+    width: 800px;
 }
 
 .modal-title{
@@ -8,6 +9,11 @@
 
 .modal-header .btn-close {
     --bs-btn-close-color: white;
+    color: white;
+    font-size: 38px;
+    position: absolute;
+    right: 12px;
+    top: 0px;
 }
 
 .modal-header{
@@ -19,10 +25,11 @@
 }
 
 .modal-body canvas {
-    width: 40% !important;
+    width: 19% !important;
     aspect-ratio: 1 / 1 !important;
     height: 33% !important;
-    padding: 12px;
+    margin-left: 8%;
+    margin-right: 8%;
 }
 
 .chart{
@@ -30,4 +37,34 @@
     flex-wrap: nowrap;
     justify-content: center;
     padding: 20px;
+}
+
+.chart-p{
+    width: 33.3%;
+    text-align: center;
+}
+
+.chart-name-div{
+    display: flex;
+    justify-content: center;
+}
+
+.possesseionPercentage{
+    color: white;
+    position: absolute;
+    top: 94px;
+    left: 131px;
+}
+
+.shootPercentage{
+    color: white;
+    position: absolute;
+    top: 94px;
+}
+
+.passPercentage{
+    color: white;
+    position: absolute;
+    top: 94px;
+    right: 129px;
 }
