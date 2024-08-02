@@ -8,23 +8,4 @@ $(document).ready(function () {
         event.preventDefault();
         window.location.href = '/market';
     });
-
-    $('.modal-member-tab').click(function () {
-        $(this).addClass('detail-click-tab');
-        $('.modal-title').removeClass('detail-click-tab');
-    });
-
-    $('.modal-title').click(function () {
-        $(this).addClass('detail-click-tab');
-        $('.modal-member-tab').removeClass('detail-click-tab');
-    });
-
-    // 모달 닫기 버튼
-    $(document).on('click', '.btn-close', async function () {
-        $('.scoreSpan').empty();
-        $('.matchDetailInfo').empty();
-        $('#matchInfoModal').css('display', 'none');
-        $('.modal-title').addClass('detail-click-tab');
-        $('.modal-member-tab').removeClass('detail-click-tab');
-    });
 });

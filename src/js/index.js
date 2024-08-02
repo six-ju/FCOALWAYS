@@ -454,6 +454,7 @@ async function getAllPlayerPhoto() {
     let userMatchInfoURL = `https://open.api.nexon.com/static/fconline/meta/spid.json`;
     let answers = await fetch(userMatchInfoURL);
     let playerId = await answers.json();
+    sessionStorage.setItem("playerId" , JSON.stringify(playerId))
     // 랜덤으로 선수 숫자가져오기
     let min = 62300;
     let max = 71214;
@@ -479,6 +480,7 @@ async function getMatchDetil(id, matchList) {
     let selectDetailId = [];
     for (let i = 0; i <= matchList.length; i++) {
         if (matchList[i].matchId == id) {
+            sessionStorage.setItem('matchInfoPick', JSON.stringify(matchList[i]))
             // 검색 유저가 무조건 0번째로 변경함
             if (matchList[i].matchInfo[0].nickname != characterName) {
                 let temp = matchList[i].matchInfo[0];

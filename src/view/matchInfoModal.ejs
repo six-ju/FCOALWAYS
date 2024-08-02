@@ -4,15 +4,14 @@
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <div class="modal-title detail-click-tab">Match Detail </div>
+                <div class="modal-title detail-click-tab">Match Detail</div>
                 <div class="modal-member-tab">Member</div>
-                <button
-                    type="button"
-                    class="btn-close"
-                    data-bs-dismiss="modal"
-                    aria-label="Close"
-                >x</button>
+                <div class="modal-Squad-tab">Squad</div>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
+                    x
+                </button>
             </div>
+            <!-- Match Detail -->
             <div class="modal-body">
                 <div class="detail-score"></div>
                 <div class="chart">
@@ -31,7 +30,20 @@
                     <p class="chart-p">슛 정확도</p>
                     <p class="chart-p">패스 정확도</p>
                 </div>
-                <div class="matchDetailInfo" style="color: white;"></div>
+                <div class="matchDetailInfo" style="color: white"></div>
+            </div>
+
+            <!-- 선수들 -->
+            <div></div>
+            <!-- 스쿼드 -->
+            <div class="modal-body squad-section">
+                <div class="soccer-field">
+                    <div class="player goalkeeper">GK</div>
+                    <div class="player defender" id="player1">DF</div>
+                    <div class="player midfielder" id="player2">MF</div>
+                    <div class="player forward" id="player3">FW</div>
+                    <!-- 필요한 만큼 선수 추가 -->
+                </div>
             </div>
         </div>
     </div>
