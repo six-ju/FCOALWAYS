@@ -17,6 +17,9 @@
 
 .modal-title {
     color: white;
+    margin-right: 4%;
+    border-bottom: 2px solid transparent;
+    cursor: pointer;
 }
 
 .modal-header .btn-close {
@@ -100,7 +103,7 @@
     display: flex;
     flex-wrap: nowrap;
     justify-content: space-between;
-    font-size: 18px;
+    font-size: 24px;
     font-weight: 900;
 }
 
@@ -112,4 +115,36 @@
 .lose{
     color: rgba(239, 68, 68, 0.8); /* 승리 시 호버 상태 색상 */
     border-bottom-color: rgb(239, 68, 68, 0.8);
+}
+
+.detail-click-tab {
+    margin-right: 4%;
+    opacity: 1;
+    color: rgb(74, 222, 128) !important; /* 기본 텍스트 색상 */
+    position: relative; /* 선의 위치를 조절하기 위해 상대 위치 설정 */
+    transition: color 0.3s, border-bottom-color 0.3s; /* 색상과 선 색상 변화에 애니메이션 적용 */
+    cursor: pointer; /* 클릭할 수 있는 요소임을 나타냄 */
+}
+
+.modal-title:focus,
+.modal-title:hover,
+.modal-title:active {
+    color: rgb(74, 222, 128); /* 클릭 또는 호버 시 텍스트 색상 */
+    border-bottom-color: rgb(74, 222, 128); /* 클릭 또는 호버 시 선 색상 */
+    border-bottom-width: 2px; /* 선의 두께 */
+}
+
+.modal-member-tab:focus,
+.modal-member-tab:hover,
+.modal-member-tab:active {
+    color: rgb(74, 222, 128); /* 클릭 또는 호버 시 텍스트 색상 */
+    border-bottom-color: rgb(74, 222, 128); /* 클릭 또는 호버 시 선 색상 */
+    border-bottom-width: 2px; /* 선의 두께 */
+}
+
+.modal-member-tab{
+    color: white;
+    margin-right: 4%;
+    border-bottom: 2px solid transparent;
+    cursor: pointer;
 }

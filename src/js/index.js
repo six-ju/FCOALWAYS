@@ -92,13 +92,6 @@ $(document).ready(function () {
         await createDoughnutChart('passRateChart', passData, backgroundColors, borderColors);
     });
 
-    // 모달 닫기 버튼
-    $(document).on('click', '.btn-close', async function () {
-        $('.scoreSpan').empty();
-        $('.matchDetailInfo').empty();
-        $('#matchInfoModal').css('display', 'none');
-    });
-
     $(document).click(function (event) {
         var target = $(event.target);
         if (

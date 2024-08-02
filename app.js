@@ -76,7 +76,7 @@ app.use((req, res, next) => {
     next();
 });
 
-const indexRouter = require('./routes/index');
+const indexRouter = require('./routes/routes');
 app.use('/', indexRouter);
 
 // app.get('/',(req,res)=>{
