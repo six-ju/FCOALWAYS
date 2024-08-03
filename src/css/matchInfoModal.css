@@ -1,7 +1,6 @@
 @font-face {
     font-family: 'SUIT-Regular';
-    src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_suit@1.0/SUIT-Regular.woff2')
-        format('woff2');
+    src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_suit@1.0/SUIT-Regular.woff2') format('woff2');
     font-weight: normal;
     font-style: normal;
 }
@@ -107,42 +106,54 @@
     font-weight: 900;
 }
 
-.win{
-    color: rgba(34, 197, 94, 0.8); /* 승리 시 호버 상태 색상 */
+.win {
+    color: rgba(34, 197, 94, 0.8);
+    /* 승리 시 호버 상태 색상 */
     border-bottom-color: rgb(34, 197, 94, 0.8);
 }
 
-.lose{
-    color: rgba(239, 68, 68, 0.8); /* 승리 시 호버 상태 색상 */
+.lose {
+    color: rgba(239, 68, 68, 0.8);
+    /* 승리 시 호버 상태 색상 */
     border-bottom-color: rgb(239, 68, 68, 0.8);
 }
 
 .detail-click-tab {
     margin-right: 4%;
     opacity: 1;
-    color: rgb(74, 222, 128) !important; /* 기본 텍스트 색상 */
-    position: relative; /* 선의 위치를 조절하기 위해 상대 위치 설정 */
-    transition: color 0.3s, border-bottom-color 0.3s; /* 색상과 선 색상 변화에 애니메이션 적용 */
-    cursor: pointer; /* 클릭할 수 있는 요소임을 나타냄 */
+    color: rgb(74, 222, 128) !important;
+    /* 기본 텍스트 색상 */
+    position: relative;
+    /* 선의 위치를 조절하기 위해 상대 위치 설정 */
+    transition: color 0.3s, border-bottom-color 0.3s;
+    /* 색상과 선 색상 변화에 애니메이션 적용 */
+    cursor: pointer;
+    /* 클릭할 수 있는 요소임을 나타냄 */
 }
 
 .modal-title:focus,
 .modal-title:hover,
 .modal-title:active {
-    color: rgb(74, 222, 128); /* 클릭 또는 호버 시 텍스트 색상 */
-    border-bottom-color: rgb(74, 222, 128); /* 클릭 또는 호버 시 선 색상 */
-    border-bottom-width: 2px; /* 선의 두께 */
+    color: rgb(74, 222, 128);
+    /* 클릭 또는 호버 시 텍스트 색상 */
+    border-bottom-color: rgb(74, 222, 128);
+    /* 클릭 또는 호버 시 선 색상 */
+    border-bottom-width: 2px;
+    /* 선의 두께 */
 }
 
 .modal-member-tab:focus,
 .modal-member-tab:hover,
 .modal-member-tab:active {
-    color: rgb(74, 222, 128); /* 클릭 또는 호버 시 텍스트 색상 */
-    border-bottom-color: rgb(74, 222, 128); /* 클릭 또는 호버 시 선 색상 */
-    border-bottom-width: 2px; /* 선의 두께 */
+    color: rgb(74, 222, 128);
+    /* 클릭 또는 호버 시 텍스트 색상 */
+    border-bottom-color: rgb(74, 222, 128);
+    /* 클릭 또는 호버 시 선 색상 */
+    border-bottom-width: 2px;
+    /* 선의 두께 */
 }
 
-.modal-member-tab{
+.modal-member-tab {
     color: white;
     margin-right: 4%;
     border-bottom: 2px solid transparent;
@@ -155,7 +166,8 @@
 .soccer-field {
     position: relative;
     width: 100%;
-    padding-top: 56.25%; /* 16:9 비율 유지 */
+    padding-top: 56.25%;
+    /* 16:9 비율 유지 */
     background-color: green;
     border: 2px solid white;
     background: url('soccer-field.jpg') no-repeat center center;
@@ -184,31 +196,153 @@
 }
 
 .squad-section {
-    display: none; /* 초기에는 스쿼드 섹션을 숨김 */
+    display: none;
+    /* 초기에는 스쿼드 섹션을 숨김 */
 }
 
 /* 포지션별 위치 설정 */
-.goalkeeper {
-    top: 80%; 
+/* Position styles */
+.position-GK {
+    top: 80%;
     left: 45%;
 }
 
-.defender {
-    top: 60%; 
+.position-SW {
+    top: 60%;
     left: 20%;
 }
 
-.midfielder {
-    top: 40%; 
+.position-RWB {
+    top: 60%;
+    left: 25%;
+}
+
+.position-RB {
+    top: 60%;
+    left: 30%;
+}
+
+.position-RCB {
+    top: 60%;
+    left: 35%;
+}
+
+.position-CB {
+    top: 60%;
+    left: 40%;
+}
+
+.position-LCB {
+    top: 60%;
+    left: 45%;
+}
+
+.position-LB {
+    top: 60%;
     left: 50%;
 }
 
-.forward {
-    top: 20%; 
+.position-LWB {
+    top: 60%;
+    left: 55%;
+}
+
+.position-RDM {
+    top: 40%;
+    left: 25%;
+}
+
+.position-CDM {
+    top: 40%;
+    left: 30%;
+}
+
+.position-LDM {
+    top: 40%;
+    left: 35%;
+}
+
+.position-RM {
+    top: 40%;
+    left: 45%;
+}
+
+.position-RCM {
+    top: 40%;
+    left: 50%;
+}
+
+.position-CM {
+    top: 40%;
+    left: 55%;
+}
+
+.position-LCM {
+    top: 40%;
+    left: 60%;
+}
+
+.position-LM {
+    top: 40%;
+    left: 65%;
+}
+
+.position-RAM {
+    top: 20%;
+    left: 45%;
+}
+
+.position-CAM {
+    top: 20%;
+    left: 50%;
+}
+
+.position-LAM {
+    top: 20%;
+    left: 55%;
+}
+
+.position-RF {
+    top: 20%;
+    left: 65%;
+}
+
+.position-CF {
+    top: 20%;
+    left: 70%;
+}
+
+.position-LF {
+    top: 20%;
+    left: 75%;
+}
+
+.position-RW {
+    top: 20%;
     left: 80%;
 }
 
+.position-RS {
+    top: 20%;
+    left: 85%;
+}
+
+.position-ST {
+    top: 20%;
+    left: 90%;
+}
+
+.position-LS {
+    top: 20%;
+    left: 95%;
+}
+
+.position-LW {
+    top: 20%;
+    left: 100%;
+}
+
 /* test */
-.test{
+.test {
     color: white;
 }
