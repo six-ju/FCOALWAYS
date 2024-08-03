@@ -1,3 +1,5 @@
+import position from "../data/position.js";
+
 $(document).ready(function () {
   $(".modal-member-tab").click(function () {
     $(this).addClass("detail-click-tab");
@@ -38,8 +40,6 @@ async function playerPosition() {
   let matchInfo = sessionStorage.getItem("matchInfoPick");
   matchInfo = JSON.parse(matchInfo);
 
-  console.log("playerId", playerId);
-
   let userPlayer = [];
   let oppenPlayer = [];
   for (let i = 0; i <= 17; i++) {
@@ -51,6 +51,25 @@ async function playerPosition() {
     // 상대편
     if (matchInfo.matchInfo[1].player[i].spPosition != 28) {
       oppenPlayer.push(matchInfo.matchInfo[1].player[i]);
+    }
+  }
+
+  // 검색한 사용자
+  for (let i = 0; i < userPlayer.length; i++) {
+    for (let j = 0; j < position.length; j++) {
+      if (position[j].spposition == userPlayer[i].spPosition) {
+        userPlayer[i].spPosition = position[j].desc;
+        break;
+      }
+    }
+  }
+  // 상대편
+  for (let i = 0; i < oppenPlayer.length; i++) {
+    for (let j = 0; j < position.length; j++) {
+      if (position[j].spposition == oppenPlayer[i].spPosition) {
+        oppenPlayer[i].spPosition = position[j].desc;
+        break;
+      }
     }
   }
 
@@ -84,7 +103,7 @@ async function playerPosition() {
     for (let i = 0; i < filteredData.length; i++) {
       let filterIdString = filteredData[i].id.toString().slice(3);
       if (filterIdString == idString) {
-        userPlayerNameId.push({
+        oppenPlayerNameId.push({
           name: filteredData[i].name,
           playerInfo: oppenPlayer[j],
         });
@@ -92,6 +111,7 @@ async function playerPosition() {
       }
     }
   }
+  console.log(userPlayerNameId)
 }
 
 // 선수 데이터를 정리하는 함수

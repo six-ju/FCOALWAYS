@@ -1,4 +1,5 @@
-[
+// position.js
+const position = [
     { "spposition": 0, "desc": "GK" },
     { "spposition": 1, "desc": "SW" },
     { "spposition": 2, "desc": "RWB" },
@@ -28,4 +29,6 @@
     { "spposition": 26, "desc": "LS" },
     { "spposition": 27, "desc": "LW" },
     { "spposition": 28, "desc": "SUB" }
-]
+];
+
+export default position;
