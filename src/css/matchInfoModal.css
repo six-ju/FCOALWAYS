@@ -202,145 +202,51 @@
 
 /* 포지션별 위치 설정 */
 /* Position styles */
+/* Goalkeeper */
+/* Goalkeeper */
 .position-GK {
-    top: 80%;
-    left: 45%;
-}
-
-.position-SW {
-    top: 60%;
-    left: 20%;
-}
-
-.position-RWB {
-    top: 60%;
-    left: 25%;
-}
-
-.position-RB {
-    top: 60%;
-    left: 30%;
-}
-
-.position-RCB {
-    top: 60%;
-    left: 35%;
-}
-
-.position-CB {
-    top: 60%;
-    left: 40%;
-}
-
-.position-LCB {
-    top: 60%;
-    left: 45%;
-}
-
-.position-LB {
-    top: 60%;
+    position: absolute;
+    top: 85%;
     left: 50%;
+    transform: translate(-50%, -50%);
 }
 
-.position-LWB {
-    top: 60%;
-    left: 55%;
-}
+/* Defenders */
+.position-SW { position: absolute; top: 60%; left: 50%; transform: translate(-50%, -50%); }
+.position-RWB { position: absolute; top: 70%; left: 20%; transform: translate(-50%, -50%); }
+.position-RB { position: absolute; top: 70%; left: 20%; transform: translate(-50%, -50%); }
+.position-RCB { position: absolute; top: 70%; left: 40%; transform: translate(-50%, -50%); }
+.position-CB { position: absolute; top: 70%; left: 50%; transform: translate(-50%, -50%); }
+.position-LCB { position: absolute; top: 70%; left: 60%; transform: translate(-50%, -50%); }
+.position-LB { position: absolute; top: 70%; left: 80%; transform: translate(-50%, -50%); }
+.position-LWB { position: absolute; top: 70%; left: 80%; transform: translate(-50%, -50%); }
 
-.position-RDM {
-    top: 40%;
-    left: 25%;
-}
+/* Defensive Midfielders */
+.position-RDM { position: absolute; top: 55%; left: 30%; transform: translate(-50%, -50%); }
+.position-CDM { position: absolute; top: 55%; left: 50%; transform: translate(-50%, -50%); }
+.position-LDM { position: absolute; top: 55%; left: 70%; transform: translate(-50%, -50%); }
 
-.position-CDM {
-    top: 40%;
-    left: 30%;
-}
+/* Central Midfielders */
+.position-RM { position: absolute; top: 50%; left: 20%; transform: translate(-50%, -50%); }
+.position-RCM { position: absolute; top: 50%; left: 35%; transform: translate(-50%, -50%); }
+.position-CM { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); }
+.position-LCM { position: absolute; top: 50%; left: 65%; transform: translate(-50%, -50%); }
+.position-LM { position: absolute; top: 50%; left: 80%; transform: translate(-50%, -50%); }
 
-.position-LDM {
-    top: 40%;
-    left: 35%;
-}
+/* Attacking Midfielders */
+.position-RAM { position: absolute; top: 40%; left: 35%; transform: translate(-50%, -50%); }
+.position-CAM { position: absolute; top: 40%; left: 50%; transform: translate(-50%, -50%); }
+.position-LAM { position: absolute; top: 40%; left: 65%; transform: translate(-50%, -50%); }
 
-.position-RM {
-    top: 40%;
-    left: 45%;
-}
-
-.position-RCM {
-    top: 40%;
-    left: 50%;
-}
-
-.position-CM {
-    top: 40%;
-    left: 55%;
-}
-
-.position-LCM {
-    top: 40%;
-    left: 60%;
-}
-
-.position-LM {
-    top: 40%;
-    left: 65%;
-}
-
-.position-RAM {
-    top: 20%;
-    left: 45%;
-}
-
-.position-CAM {
-    top: 20%;
-    left: 50%;
-}
-
-.position-LAM {
-    top: 20%;
-    left: 55%;
-}
-
-.position-RF {
-    top: 20%;
-    left: 65%;
-}
-
-.position-CF {
-    top: 20%;
-    left: 70%;
-}
-
-.position-LF {
-    top: 20%;
-    left: 75%;
-}
-
-.position-RW {
-    top: 20%;
-    left: 80%;
-}
-
-.position-RS {
-    top: 20%;
-    left: 85%;
-}
-
-.position-ST {
-    top: 20%;
-    left: 90%;
-}
-
-.position-LS {
-    top: 20%;
-    left: 95%;
-}
-
-.position-LW {
-    top: 20%;
-    left: 100%;
-}
+/* Forwards */
+.position-RF { position: absolute; top: 30%; left: 35%; transform: translate(-50%, -50%); }
+.position-CF { position: absolute; top: 30%; left: 50%; transform: translate(-50%, -50%); }
+.position-LF { position: absolute; top: 30%; left: 65%; transform: translate(-50%, -50%); }
+.position-RW { position: absolute; top: 30%; left: 20%; transform: translate(-50%, -50%); }
+.position-RS { position: absolute; top: 30%; left: 40%; transform: translate(-50%, -50%); }
+.position-ST { position: absolute; top: 15%; left: 50%; transform: translate(-50%, -50%); }
+.position-LS { position: absolute; top: 30%; left: 60%; transform: translate(-50%, -50%); }
+.position-LW { position: absolute; top: 30%; left: 80%; transform: translate(-50%, -50%); }
 
 /* test */
 .test {
