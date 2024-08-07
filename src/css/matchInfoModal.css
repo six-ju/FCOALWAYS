@@ -191,20 +191,15 @@
     transition: transform 0.2s;
 }
 
-.player:hover {
-    transform: scale(1.1);
-}
-
 .squad-section {
     display: none;
-    /* 초기에는 스쿼드 섹션을 숨김 */
 }
 
 /* 포지션별 위치 설정 */
 /* Position styles */
 /* Goalkeeper */
 /* Goalkeeper */
-.position-GK {
+.GK {
     position: absolute;
     top: 85%;
     left: 50%;
@@ -212,43 +207,88 @@
 }
 
 /* Defenders */
-.position-SW { position: absolute; top: 60%; left: 50%; transform: translate(-50%, -50%); }
-.position-RWB { position: absolute; top: 70%; left: 20%; transform: translate(-50%, -50%); }
-.position-RB { position: absolute; top: 70%; left: 20%; transform: translate(-50%, -50%); }
-.position-RCB { position: absolute; top: 70%; left: 40%; transform: translate(-50%, -50%); }
-.position-CB { position: absolute; top: 70%; left: 50%; transform: translate(-50%, -50%); }
-.position-LCB { position: absolute; top: 70%; left: 60%; transform: translate(-50%, -50%); }
-.position-LB { position: absolute; top: 70%; left: 80%; transform: translate(-50%, -50%); }
-.position-LWB { position: absolute; top: 70%; left: 80%; transform: translate(-50%, -50%); }
+.SW { position: absolute; top: 60%; left: 50%; transform: translate(-50%, -50%); }
+.RWB { position: absolute; top: 70%; left: 20%; transform: translate(-50%, -50%); }
+.RB { position: absolute; top: 70%; left: 20%; transform: translate(-50%, -50%); }
+.RCB { position: absolute; top: 70%; left: 40%; transform: translate(-50%, -50%); }
+.CB { position: absolute; top: 70%; left: 50%; transform: translate(-50%, -50%); }
+.LCB { position: absolute; top: 70%; left: 60%; transform: translate(-50%, -50%); }
+.LB { position: absolute; top: 70%; left: 80%; transform: translate(-50%, -50%); }
+.LWB { position: absolute; top: 70%; left: 80%; transform: translate(-50%, -50%); }
 
 /* Defensive Midfielders */
-.position-RDM { position: absolute; top: 55%; left: 30%; transform: translate(-50%, -50%); }
-.position-CDM { position: absolute; top: 55%; left: 50%; transform: translate(-50%, -50%); }
-.position-LDM { position: absolute; top: 55%; left: 70%; transform: translate(-50%, -50%); }
+.RDM { position: absolute; top: 55%; left: 30%; transform: translate(-50%, -50%); }
+.CDM { position: absolute; top: 55%; left: 50%; transform: translate(-50%, -50%); }
+.LDM { position: absolute; top: 55%; left: 70%; transform: translate(-50%, -50%); }
 
 /* Central Midfielders */
-.position-RM { position: absolute; top: 50%; left: 20%; transform: translate(-50%, -50%); }
-.position-RCM { position: absolute; top: 50%; left: 35%; transform: translate(-50%, -50%); }
-.position-CM { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); }
-.position-LCM { position: absolute; top: 50%; left: 65%; transform: translate(-50%, -50%); }
-.position-LM { position: absolute; top: 50%; left: 80%; transform: translate(-50%, -50%); }
+.RM { position: absolute; top: 50%; left: 20%; transform: translate(-50%, -50%); }
+.RCM { position: absolute; top: 50%; left: 35%; transform: translate(-50%, -50%); }
+.CM { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); }
+.LCM { position: absolute; top: 50%; left: 65%; transform: translate(-50%, -50%); }
+.LM { position: absolute; top: 50%; left: 80%; transform: translate(-50%, -50%); }
 
 /* Attacking Midfielders */
-.position-RAM { position: absolute; top: 40%; left: 35%; transform: translate(-50%, -50%); }
-.position-CAM { position: absolute; top: 40%; left: 50%; transform: translate(-50%, -50%); }
-.position-LAM { position: absolute; top: 40%; left: 65%; transform: translate(-50%, -50%); }
+.RAM { position: absolute; top: 40%; left: 35%; transform: translate(-50%, -50%); }
+.CAM { position: absolute; top: 40%; left: 50%; transform: translate(-50%, -50%); }
+.LAM { position: absolute; top: 40%; left: 65%; transform: translate(-50%, -50%); }
 
 /* Forwards */
-.position-RF { position: absolute; top: 30%; left: 35%; transform: translate(-50%, -50%); }
-.position-CF { position: absolute; top: 30%; left: 50%; transform: translate(-50%, -50%); }
-.position-LF { position: absolute; top: 30%; left: 65%; transform: translate(-50%, -50%); }
-.position-RW { position: absolute; top: 30%; left: 20%; transform: translate(-50%, -50%); }
-.position-RS { position: absolute; top: 30%; left: 40%; transform: translate(-50%, -50%); }
-.position-ST { position: absolute; top: 15%; left: 50%; transform: translate(-50%, -50%); }
-.position-LS { position: absolute; top: 30%; left: 60%; transform: translate(-50%, -50%); }
-.position-LW { position: absolute; top: 30%; left: 80%; transform: translate(-50%, -50%); }
+.RF { position: absolute; top: 30%; left: 35%; transform: translate(-50%, -50%); }
+.CF { position: absolute; top: 30%; left: 50%; transform: translate(-50%, -50%); }
+.LF { position: absolute; top: 30%; left: 65%; transform: translate(-50%, -50%); }
+.RW { position: absolute; top: 30%; left: 20%; transform: translate(-50%, -50%); }
+.RS { position: absolute; top: 30%; left: 40%; transform: translate(-50%, -50%); }
+.ST { position: absolute; top: 15%; left: 50%; transform: translate(-50%, -50%); }
+.LS { position: absolute; top: 30%; left: 60%; transform: translate(-50%, -50%); }
+.LW { position: absolute; top: 30%; left: 80%; transform: translate(-50%, -50%); }
 
-/* test */
-.test {
+.modal-Squad-tab {
     color: white;
+}
+
+.playerName {
+    color: white;
+}
+#userPlayer {
+    color: white;
+    font-size: 27px;
+}
+#oppenPlayer {
+    color: white;
+    font-size: 27px;
+}
+
+.squad-tap-each-user{
+    display: flex;
+    justify-content: space-between;
+    font-family: 'SUIT-Regular'
+}
+
+@keyframes jump {
+    0%, 100% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-10px);
+    }
+}
+
+@keyframes changeColor {
+    0%, 100% {
+        color: lightgreen;
+    }
+    50% {
+        color: white;
+    }
+}
+
+.select {
+    animation: jump 0.5s infinite, changeColor 2s infinite;
+    padding: 10px;
+    display: inline-block;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+    text-align: center;
 }

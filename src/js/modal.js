@@ -11,6 +11,8 @@ $(document).ready(function () {
     $(this).addClass("detail-click-tab");
     $(".modal-member-tab").removeClass("detail-click-tab");
     $(".modal-Squad-tab").removeClass("detail-click-tab");
+    $(".modal-body").show();
+    $(".squad-section").addClass('hide');
   });
 
   $(".modal-Squad-tab").click(async function () {
@@ -19,10 +21,27 @@ $(document).ready(function () {
     $(".modal-title").removeClass("detail-click-tab");
     $(".modal-header > div").removeClass("active");
     $(this).addClass("active");
+    $(".squad-tap-each-user").empty();
+    $('.oppenPlayer').addClass('hide');
+    $(".userPlayer").removeClass('hide');
     await playerPosition();
     $(".modal-body").hide();
     $(".squad-section").show();
   });
+
+  $(document).on('click', '#userPlayer', async function () {
+    $(".userPlayer").removeClass('hide');
+    $("#oppenPlayer").removeClass('select');
+    $("#userPlayer").addClass('select');
+    $('.oppenPlayer').addClass('hide');
+});
+
+$(document).on('click', '#oppenPlayer', async function () {
+    $(".oppenPlayer").removeClass('hide');
+    $('.userPlayer').addClass('hide');
+    $("#oppenPlayer").addClass('select');
+    $("#userPlayer").removeClass('select');
+});
 
   // 모달 닫기 버튼
   $(document).on("click", ".btn-close", async function () {
@@ -30,7 +49,12 @@ $(document).ready(function () {
     $(".matchDetailInfo").empty();
     $("#matchInfoModal").css("display", "none");
     $(".modal-title").addClass("detail-click-tab");
+    $(".modal-Squad-tab").removeClass("detail-click-tab");
     $(".modal-member-tab").removeClass("detail-click-tab");
+    $('.oppenPlayer').addClass('hide');
+    $(".userPlayer").removeClass('hide');
+    $(".modal-body").show();
+    $(".squad-section").hide();
   });
 });
 
@@ -39,6 +63,12 @@ async function playerPosition() {
   playerId = JSON.parse(playerId);
   let matchInfo = sessionStorage.getItem("matchInfoPick");
   matchInfo = JSON.parse(matchInfo);
+
+
+  $('.squad-tap-each-user').append(`
+        <div class='select' id="userPlayer">${matchInfo.matchInfo[0].nickname}</div>
+        <div id="oppenPlayer">${matchInfo.matchInfo[1].nickname}</div>
+    `)
 
   let userPlayer = [];
   let oppenPlayer = [];
@@ -112,8 +142,20 @@ async function playerPosition() {
       }
     }
   }
-  console.log(userPlayerNameId)
-  console.log(oppenPlayerNameId)
+
+  for(let i = 0; i < userPlayerNameId.length; i++){
+    $('.userPlayer').append(`
+        <div class='player ${userPlayerNameId[i].playerInfo.spPosition}'>${userPlayerNameId[i].playerInfo.spPosition}</div>
+          <div class='playerName ${userPlayerNameId[i].playerInfo.spPosition}' style='margin-top: 50px;'>${userPlayerNameId[i].name}</div>
+      `)
+  }
+
+  for(let i = 0; i < oppenPlayerNameId.length; i++){
+    $('.oppenPlayer').append(`
+        <div class='player ${oppenPlayerNameId[i].playerInfo.spPosition}'>${oppenPlayerNameId[i].playerInfo.spPosition}</div>
+          <div class='playerName ${oppenPlayerNameId[i].playerInfo.spPosition}' style='margin-top: 50px;'>${oppenPlayerNameId[i].name}</div>
+      `)
+  }
 }
 
 // 선수 데이터를 정리하는 함수
