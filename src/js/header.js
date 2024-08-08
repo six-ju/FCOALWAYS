@@ -4,8 +4,14 @@ $(document).ready(function () {
         event.preventDefault();
         window.location.href = '/';
     });
+
     $('.transferMarket').click(function (event) {
         event.preventDefault();
         window.location.href = '/market';
+    });
+
+    $('.live-chat').click(function (event) {
+        event.preventDefault();
+        window.location.href = '/liveChat';
     });
 });
