@@ -39,10 +39,6 @@ app.use(
     }),
 );
 
-app.get('/api/data', (req, res) => {
-    const apiKey = process.env.NEXON_API_KEY;
-
-});
 
 // 라우터 설정
 const indexRouter = require('./routes/routes');
@@ -51,6 +47,10 @@ app.use('/', indexRouter);
 // 루트 경로에서 HTML 파일 제공
 app.get('/', (req, res) => {
     res.sendFile(path.join(__dirname, 'src/view', 'index.html'));
+});
+
+app.get('/api/data', (req, res) => {
+    const apiKey = process.env.NEXON_API_KEY;
 });
 
 // 소켓 연결 및 이벤트 핸들러 설정
