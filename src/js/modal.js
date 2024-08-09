@@ -77,6 +77,7 @@ async function playerPosition() {
 
     let userPlayer = [];
     let oppenPlayer = [];
+    console.log(matchInfo)
     for (let i = 0; i <= 17; i++) {
         // 검색한 사용자 모든정보
         if (matchInfo.matchInfo[0].player[i].spPosition != 28) {
@@ -148,23 +149,26 @@ async function playerPosition() {
         }
     }
 
-    $('.userPlayer').empty()
-    $('.oppenPlayer').empty()
+    $('.userPlayer').empty();
+    $('.oppenPlayer').empty();
+    console.log(userPlayerNameId);
 
-    // 유저 스쿼드 
+    // 유저 스쿼드
     for (let i = 0; i < userPlayerNameId.length; i++) {
         $('.userPlayer').append(`
         <div class='player ${userPlayerNameId[i].playerInfo.spPosition}'>${userPlayerNameId[i].playerInfo.spPosition}</div>
-          <div class='playerName ${userPlayerNameId[i].playerInfo.spPosition}' style='margin-top: 50px;'>${userPlayerNameId[i].name}</div>
-      `);
+            <div class='playerName ${userPlayerNameId[i].playerInfo.spPosition}' style='margin-top: 50px;'>${userPlayerNameId[i].name}</div>
+            <div class='playerName ${userPlayerNameId[i].playerInfo.spPosition}' style='margin-top: 75px;'>(${userPlayerNameId[i].playerInfo.status.spRating})</div>
+        `);
     }
 
-    // 상대 스쿼드 
+    // 상대 스쿼드
     for (let i = 0; i < oppenPlayerNameId.length; i++) {
         $('.oppenPlayer').append(`
         <div class='player ${oppenPlayerNameId[i].playerInfo.spPosition}'>${oppenPlayerNameId[i].playerInfo.spPosition}</div>
-          <div class='playerName ${oppenPlayerNameId[i].playerInfo.spPosition}' style='margin-top: 50px;'>${oppenPlayerNameId[i].name}</div>
-      `);
+            <div class='playerName ${oppenPlayerNameId[i].playerInfo.spPosition}' style='margin-top: 50px;'>${oppenPlayerNameId[i].name}</div>
+            <div class='playerName ${oppenPlayerNameId[i].playerInfo.spPosition}' style='margin-top: 75px;'>(${oppenPlayerNameId[i].playerInfo.status.spRating})</div>
+        `);
     }
 }
 

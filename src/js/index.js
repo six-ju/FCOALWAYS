@@ -480,29 +480,21 @@ async function getMatchDetil(id, matchList) {
     let selectDetailId = [];
     for (let i = 0; i <= matchList.length; i++) {
         if (matchList[i].matchId == id) {
-            sessionStorage.setItem('matchInfoPick', JSON.stringify(matchList[i]))
             // 검색 유저가 무조건 0번째로 변경함
             if (matchList[i].matchInfo[0].nickname != characterName) {
                 let temp = matchList[i].matchInfo[0];
                 matchList[i].matchInfo[0] = matchList[i].matchInfo[1];
                 matchList[i].matchInfo[1] = temp;
             }
-
-            // 키보드 스틱 유저 분리
-            let userPlayType =
-                matchList[i].matchInfo[0].matchDetail.controller == 'keyboard' ? '⌨️' : '🎮';
-            let oppenPlayType =
-                matchList[i].matchInfo[1].matchDetail.controller == 'keyboard' ? '⌨️' : '🎮';
+            sessionStorage.setItem('matchInfoPick', JSON.stringify(matchList[i]))
 
             $('.detail-score').append(`
                 <span class='scoreSpan'> 
-                <span class='playType'>${userPlayType}</span>
                     ${matchList[i].matchInfo[0].nickname}  
                         ${matchList[i].matchInfo[0].shoot.goalTotal}  
                             -  
                         ${matchList[i].matchInfo[1].shoot.goalTotal}  
                     ${matchList[i].matchInfo[1].nickname}
-                    <span class='playType'>${oppenPlayType}</span>
                 </span>
             `);
 
@@ -522,6 +514,9 @@ async function getMatchDetil(id, matchList) {
             $('.matchDetailInfo').append(`
                 <div class="matchInfoClass">
                     <span class='average-left'> ${userAverage} / 10 </span> <span> 경기 평점 </span> <span class='average-right'> ${oppenAverage} / 10 </span>
+                </div>
+                <div class="matchInfoClass">
+                    <span class='goal-left'> ${matchList[i].matchInfo[0].matchDetail.controller} </span> <span> 플레이 타입 </span> <span class='goal-right'> ${matchList[i].matchInfo[1].matchDetail.controller} </span>
                 </div>
                 <div class="matchInfoClass">
                     <span class='goal-left'> ${matchList[i].matchInfo[0].shoot.goalTotal} </span> <span> 골 </span> <span class='goal-right'> ${matchList[i].matchInfo[1].shoot.goalTotal} </span>
