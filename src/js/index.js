@@ -1,7 +1,8 @@
-// import fifaKey from '/config/config.js';
+import fifaKey from '/config/config.js';
 let characterName = '';
 // 키값
-const API_KEY = await fetchData();
+// const API_KEY = await fetchData();
+const API_KEY = fifaKey.NEXON_API_KEY;
 $(document).ready(function () {
     let win;
     let lose;
@@ -9,9 +10,8 @@ $(document).ready(function () {
     let nickName;
 
     // form 이슈로 엔터 해도 적용됨
-    $('#pw').click(async function (event) {
-        event.preventDefault();
-
+    $('.idinput').on("keyup", async function (key) {
+        if(key.keyCode==13) {
         // 로딩 gif 실행
         $('.loading').removeClass('hide');
         let $this = $(this); // 클릭된 버튼을 참조
@@ -21,6 +21,7 @@ $(document).ready(function () {
 
         $('.loading').addClass('hide');
         $this.prop('disabled', false); // 버튼 다시 활성화
+        }
     });
 
     $('.admin').click(function () {
