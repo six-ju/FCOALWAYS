@@ -1,6 +1,7 @@
 // import fifaKey from '/config/config.js';
 let characterName = '';
-
+// 키값
+const API_KEY = await fetchData();
 $(document).ready(function () {
     let win;
     let lose;
@@ -203,8 +204,6 @@ $(document).ready(function () {
         });
     }
 });
-// 키값
-const API_KEY = await fetchData();
 
 async function fetchData() {
     try {
