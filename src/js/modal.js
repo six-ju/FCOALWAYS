@@ -27,6 +27,7 @@ $(document).ready(function () {
         $('.squad-tap-each-user').empty();
         $('.oppenPlayer').addClass('hide');
         $('.userPlayer').removeClass('hide');
+        $('.squad-section').removeClass('hide');
         await playerPosition();
         $('.modal-body').hide();
         $('.squad-section').show();
@@ -146,6 +147,9 @@ async function playerPosition() {
             }
         }
     }
+
+    $('.userPlayer').empty()
+    $('.oppenPlayer').empty()
 
     // 유저 스쿼드 
     for (let i = 0; i < userPlayerNameId.length; i++) {

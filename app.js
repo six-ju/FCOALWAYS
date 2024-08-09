@@ -26,16 +26,18 @@ app.use(express.static(path.join(__dirname, 'src')));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser(process.env.COOKIE_SECRET));
-app.use(session({
-    resave: false,
-    saveUninitialized: false,
-    secret: process.env.COOKIE_SECRET,
-    cookie: {
-        httpOnly: true,
-        secure: false,
-    },
-    name: 'session-cookie',
-}));
+app.use(
+    session({
+        resave: false,
+        saveUninitialized: false,
+        secret: process.env.COOKIE_SECRET,
+        cookie: {
+            httpOnly: true,
+            secure: false,
+        },
+        name: 'session-cookie',
+    }),
+);
 
 // 라우터 설정
 const indexRouter = require('./routes/routes');
@@ -49,14 +51,16 @@ app.get('/', (req, res) => {
 // 소켓 연결 및 이벤트 핸들러 설정
 io.on('connection', (socket) => {
     console.log('a user connected');
-    
+    io.emit('chat message', 'a user connected');
+
     socket.on('chat message', (msg) => {
         console.log('message: ' + msg);
         io.emit('chat message', msg);
     });
-  
+
     socket.on('disconnect', () => {
         console.log('user disconnected');
+        io.emit('chat message', 'user disconnected');
     });
 });
 
