@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const redisClient = require('../src/util/cache');
+const runCrawler = require('../src/config/crawling/notice'); // 경로를 정확히 지정해야 합니다
 
 // 루트 라우트
 router.get('/', (req, res) => {
@@ -18,6 +18,17 @@ router.get('/market', (req, res) => {
 
 router.get('/liveChat', (req, res) => {
     res.render("liveChat");
+});
+
+// 크롤러 실행 라우트 추가
+router.get('/player-crawler', async (req, res) => {
+    try {
+        await runCrawler(); // 크롤러 실행
+        res.send("크롤러가 성공적으로 실행되었습니다!");
+    } catch (error) {
+        console.error("크롤러 실행 중 오류 발생:", error);
+        res.status(500).send("크롤러 실행 중 오류가 발생했습니다.");
+    }
 });
 
 module.exports = router;
