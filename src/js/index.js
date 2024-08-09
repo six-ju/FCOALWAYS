@@ -1,4 +1,4 @@
-import fifaKey from '/config/config.js';
+// import fifaKey from '/config/config.js';
 
 $(document).ready(function () {
     let win;
@@ -204,7 +204,7 @@ $(document).ready(function () {
 });
 
 // 키값
-const API_KEY = fifaKey.NEXON_API_KEY;
+const API_KEY = process.env.NEXON_API_KEY;
 let characterName = '';
 
 // OUID 가져오기
