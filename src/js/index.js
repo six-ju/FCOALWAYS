@@ -1,4 +1,5 @@
 // import fifaKey from '/config/config.js';
+let characterName = '';
 
 $(document).ready(function () {
     let win;
@@ -204,7 +205,6 @@ $(document).ready(function () {
 });
 // 키값
 const API_KEY = await fetchData();
-let characterName = '';
 
 async function fetchData() {
     try {
@@ -220,7 +220,7 @@ async function fetchData() {
 // OUID 가져오기
 async function getOuid(nickName) {
     console.log("nickName", nickName)
-    characterName = await nickName;
+    characterName = nickName;
     let ouIdURL = `https://open.api.nexon.com/fconline/v1/id?nickname=${nickName}`;
     try {
         let response = await fetch(ouIdURL, {
