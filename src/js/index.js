@@ -219,10 +219,9 @@ async function fetchData() {
 
 // OUID 가져오기
 async function getOuid(nickName) {
+    console.log("nickName", nickName)
     characterName = nickName;
     let ouIdURL = `https://open.api.nexon.com/fconline/v1/id?nickname=${nickName}`;
-    console.log("API_KEY", API_KEY)
-    console.log("ouIdURL", ouIdURL)
     try {
         let response = await fetch(ouIdURL, {
             headers: {
