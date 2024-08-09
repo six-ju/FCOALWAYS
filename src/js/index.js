@@ -203,10 +203,20 @@ $(document).ready(function () {
         });
     }
 });
-
 // 키값
-const API_KEY = process.env.NEXON_API_KEY;
+const API_KEY = fetchData();
 let characterName = '';
+
+async function fetchData() {
+    try {
+        const response = await fetch('/api/data');
+        const data = await response.json();
+        return data
+        // 데이터를 이용한 처리
+    } catch (error) {
+        console.error('Error fetching data:', error);
+    }
+}
 
 // OUID 가져오기
 async function getOuid(nickName) {

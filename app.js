@@ -39,6 +39,11 @@ app.use(
     }),
 );
 
+app.get('/api/data', (req, res) => {
+    const apiKey = process.env.NEXON_API_KEY;
+
+});
+
 // 라우터 설정
 const indexRouter = require('./routes/routes');
 app.use('/', indexRouter);
