@@ -210,10 +210,10 @@ async function fetchData() {
     try {
         const response = await fetch('/api/data');
         const data = await response.json();
-        return data
-        // 데이터를 이용한 처리
+        return data;
     } catch (error) {
         console.error('Error fetching data:', error);
+        return null; // 오류 발생 시 null 반환
     }
 }
 
@@ -221,7 +221,7 @@ async function fetchData() {
 async function getOuid(nickName) {
     characterName = nickName;
     let ouIdURL = `https://open.api.nexon.com/fconline/v1/id?nickname=${nickName}`;
-    console.log("API_KEY",await API_KEY)
+    console.log("API_KEY", API_KEY)
     console.log("ouIdURL", ouIdURL)
     try {
         let response = await fetch(ouIdURL, {
