@@ -1,5 +1,6 @@
 // import fifaKey from '/config/config.js';
-
+const dotenv = require('dotenv');
+dotenv.config(); 
 $(document).ready(function () {
     let win;
     let lose;
