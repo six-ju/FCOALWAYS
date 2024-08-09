@@ -203,7 +203,7 @@ $(document).ready(function () {
     }
 });
 // 키값
-const API_KEY = fetchData();
+const API_KEY = await fetchData();
 let characterName = '';
 
 async function fetchData() {
@@ -221,7 +221,7 @@ async function fetchData() {
 async function getOuid(nickName) {
     characterName = nickName;
     let ouIdURL = `https://open.api.nexon.com/fconline/v1/id?nickname=${nickName}`;
-    console.log("API_KEY", API_KEY)
+    console.log("API_KEY",await API_KEY)
     console.log("ouIdURL", ouIdURL)
     try {
         let response = await fetch(ouIdURL, {
