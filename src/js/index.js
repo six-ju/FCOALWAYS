@@ -3,7 +3,9 @@
 
 let characterName = '';
 // 키값
+console.log(123)
 const API_KEY = await fetchData();
+console.log(456)
 $(document).ready(function () {
     let win;
     let lose;
