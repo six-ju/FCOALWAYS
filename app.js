@@ -50,8 +50,9 @@ app.get('/', (req, res) => {
 });
 
 app.get('/api/data', (req, res) => {
+    console.log("api check")
     const apiKey = process.env.NEXON_API_KEY;
-    return apiKey
+    res.send({ apiKey });
 });
 
 // 소켓 연결 및 이벤트 핸들러 설정
