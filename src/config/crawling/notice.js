@@ -14,10 +14,8 @@ async function runCrawler() {
     
     // URL 접속
     for(let i = 0; i <= playerId.length; i++){
-        console.log(playerId[i].id)
+        console.log(playerId[i].id) 
         await page.goto(`https://fconline.nexon.com/DataCenter/PlayerInfo?spid=${playerId[i].id}&n1Strong=1`);
-
-
     }
 
     // 페이지 HTML 가져오기
