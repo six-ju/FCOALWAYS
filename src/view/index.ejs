@@ -18,60 +18,49 @@
       crossorigin="anonymous"
     ></script>
   </head>
-  <style>
-    html,
-    body {
-      height: 100%;
-      margin: 0;
-      display: flex;
-      flex-direction: column;
-    }
-    footer {
-      text-align: center;
-    }
-  </style>
   <body>
-    <!-- 헤더 -->
-    <%- include('share/header') %>
+    <div>
+      <!-- 헤더 -->
+      <%- include('share/header') %>
 
-    <!-- 검색창 -->
-    <div class="input-group mb-3" id="nickName-input">
-      <div class="searchinfo">
-        <input
-          type="text"
-          class="idinput form-control border-success"
-          placeholder="닉네임"
-          autocomplete="on"
-          name="nickname"
-        />
-        <button type="button" class="btn" id="pw">⚽</button>
-      </div>
-    </div>
-    <!-- 닉네임을 찾지 못했을 경우 -->
-    <div class="notFoundNickName"></div>
-
-    <div class="userInfoPage hide">
-      <!-- 검색 클릭시 나타나는 모든 정보 -->
-      <div class="allUserInfo">
-        <div class="showUserRandomPhoto"></div>
-        <div class="checkMannerBtn">
-          <button class="goodManners">GOOD</button>
-          <button class="badManners">BAD</button>
+      <!-- 검색창 -->
+      <div class="input-group mb-3" id="nickName-input">
+        <div class="searchinfo">
+          <input
+            type="text"
+            class="idinput form-control border-success"
+            placeholder="닉네임"
+            autocomplete="on"
+            name="nickname"
+          />
+          <button type="button" class="btn" id="pw">⚽</button>
         </div>
-        <div class="showUserInfoTable"></div>
       </div>
+      <!-- 닉네임을 찾지 못했을 경우 -->
+      <div class="notFoundNickName"></div>
 
-      <!-- 유저 플레이 정보 -->
-      <div>
-        <table class="userAllMatchInfo">
-          <div class="search-result winRate">
-            <canvas id="winRateChart" width="200" height="200"></canvas>
-            <div class="winRateNumber"></div>
+      <div class="userInfoPage hide">
+        <!-- 검색 클릭시 나타나는 모든 정보 -->
+        <div class="allUserInfo">
+          <div class="showUserRandomPhoto"></div>
+          <div class="checkMannerBtn">
+            <button class="goodManners">GOOD</button>
+            <button class="badManners">BAD</button>
           </div>
-        </table>
+          <div class="showUserInfoTable"></div>
+        </div>
+
+        <!-- 유저 플레이 정보 -->
+        <div>
+          <table class="userAllMatchInfo">
+            <div class="search-result winRate">
+              <canvas id="winRateChart" width="200" height="200"></canvas>
+              <div class="winRateNumber"></div>
+            </div>
+          </table>
+        </div>
       </div>
     </div>
-
     <div class="loading hide">
       <img src="../img/loading-7528_256.gif" alt="Loading" />
     </div>
