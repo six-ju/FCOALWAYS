@@ -235,9 +235,7 @@ async function fetchData() {
 
 // OUID 가져오기
 async function getOuid(nickName) {
-    console.log("nickName", nickName)
     characterName = nickName;
-    console.log(API_KEY)
     let ouIdURL = `https://open.api.nexon.com/fconline/v1/id?nickname=${nickName}`;
     try {
         let response = await fetch(ouIdURL, {
@@ -267,7 +265,7 @@ async function fifaUser(ouid) {
         lose: 0,
         draw: 0,
     };
-
+console.log(ouid)
     let userInfo = 'https://open.api.nexon.com/fconline/v1/user/basic?ouid=' + ouid;
 
     // 정보 가져오기
@@ -347,6 +345,8 @@ async function fifaUser(ouid) {
 
 // 경기 최고 기록
 async function fifaMatchfinal(data) {
+    console.log(1123,ouid)
+    console.log(456789,API_KEY)
     let maxdivision = 'https:open.api.nexon.com/fconline/v1/user/maxdivision?ouid=' + data;
     let answers = await fetch(maxdivision, {
         headers: {
