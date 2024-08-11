@@ -21,6 +21,8 @@ $(document).ready(function () {
     const item = document.createElement("li");
     item.textContent = msg;
     messages.appendChild(item);
-    window.scrollTo(0, document.body.scrollHeight);
+
+    // 하단으로 이동
+    messages.scrollTop = messages.scrollHeight;
   });
 });

@@ -30,10 +30,13 @@
     >
       <div style="display: flex; flex-direction: column; align-items: center">
         <div class="chatPlace">
-          <ul id="messages"></ul>
+          <ul
+            id="messages"
+            style="overflow-y: auto; scrollbar-width: none"
+          ></ul>
         </div>
         <form id="form" action="">
-          <input id="input" autocomplete="off" style="width: 100%" />
+          <input id="input" autocomplete="off" />
           <button class="sendBtn">▶️</button>
         </form>
       </div>
