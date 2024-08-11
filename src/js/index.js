@@ -3,9 +3,7 @@
 
 let characterName = '';
 // 키값
-console.log(123)
-const API_KEY = await fetchData();
-console.log(456)
+const API_KEY =  fetchData();
 $(document).ready(function () {
     let win;
     let lose;
@@ -228,8 +226,7 @@ async function fetchData() {
     try {
         const response = await fetch('/api/data');
         const data = await response.json();
-        console.log(data)
-        return data;
+        return data.apiKey;
     } catch (error) {
         console.error('Error fetching data:', error);
         return null; // 오류 발생 시 null 반환

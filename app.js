@@ -50,7 +50,6 @@ app.get('/', (req, res) => {
 });
 
 app.get('/api/data', (req, res) => {
-    console.log("api check")
     const apiKey = process.env.NEXON_API_KEY;
     res.send({ apiKey });
 });
