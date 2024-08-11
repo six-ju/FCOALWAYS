@@ -1,6 +1,6 @@
 .div-box-size {
   max-height: 70vh;
-  height: 70vh;
+  height: 60vh;
   margin: 100px 0 100px 0;
 }
 
@@ -12,7 +12,7 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  width: 40%;
+  width: 75%;
   border: 1px solid rgb(74, 222, 128);
   border-radius: 12px 12px 0 0;
   max-height: 70vh;
@@ -41,7 +41,7 @@ ul {
 }
 
 #form {
-  width: 40%;
+  width: 75%;
   position: relative;
 }
 
