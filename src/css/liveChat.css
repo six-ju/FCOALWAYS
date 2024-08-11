@@ -1,52 +1,53 @@
 .div-box-size {
-    max-height: 70vh;
-    height: 70vh;
-    margin: 100px 0 100px 0;
+  max-height: 70vh;
+  height: 70vh;
+  margin: 100px 0 100px 0;
 }
 
 .scroll::-webkit-scrollbar {
-    display: none;
+  display: none;
 }
 
 .chatPlace {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    width: 40%;
-    border: 1px solid rgb(74, 222, 128);
-    border-radius: 12px 12px 0 0;
-    max-height: 70vh;
-    height: 70vh;
-    overflow-y: auto;
-    scrollbar-width: none;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 40%;
+  border: 1px solid rgb(74, 222, 128);
+  border-radius: 12px 12px 0 0;
+  max-height: 70vh;
+  height: 70vh;
+  overflow-y: auto;
+  scrollbar-width: none;
 }
 
 .sendBtn {
-    position: absolute;
-    right: 36.5%;
-    background-color: rgb(0 0 0 / 0%);
-    border: 0px;
-    top: 89.3%;
+  position: absolute;
+  right: 36.5%;
+  background-color: rgb(0 0 0 / 0%);
+  border: 0px;
+  top: 89.3%;
 }
 
 li {
-    color: rgb(74, 222, 128);
+  color: rgb(74, 222, 128);
+  list-style-type: none;
 }
 
 ul {
-    width: 100%;
-    padding: 40px 45px 40px 45px;
-    position: relative;
+  width: 100%;
+  padding: 40px 45px 40px 45px;
+  position: relative;
 }
 
 #form {
-    width: 40%;
-    position: relative;
+  width: 40%;
+  position: relative;
 }
 
 #input {
-    width: 100%;
-    border-radius: 0 0 12px 12px;
-    border: 1px solid rgb(74, 222, 128);
-    padding: 12px;
+  width: 100%;
+  border-radius: 0 0 12px 12px;
+  border: 1px solid rgb(74, 222, 128);
+  padding: 12px;
 }
