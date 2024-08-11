@@ -27,7 +27,6 @@ $(document).ready(function () {
     // 엔터로 인한 검색
     $('.idinput').on("keyup", async function (key) {
         if (key.keyCode === 13) { 
-        console.log(key.keyCode)
         // 로딩 gif 실행
         $('.loading').removeClass('hide');
         let $this = $(this); // 클릭된 버튼을 참조
@@ -72,7 +71,6 @@ $(document).ready(function () {
         matchList = matchList.concat(matchListMore);
 
         let selectMatchDetail = await getMatchDetil(id, matchList);
-        console.log(selectMatchDetail);
 
         if (selectMatchDetail.matchInfo[0].nickname != nickName) {
             let tmp = selectMatchDetail.matchInfo[0];
@@ -265,7 +263,6 @@ async function fifaUser(ouid) {
         lose: 0,
         draw: 0,
     };
-console.log(ouid)
     let userInfo = 'https://open.api.nexon.com/fconline/v1/user/basic?ouid=' + ouid;
 
     // 정보 가져오기
@@ -345,9 +342,7 @@ console.log(ouid)
 
 // 경기 최고 기록
 async function fifaMatchfinal(data) {
-    console.log(1123,ouid)
-    console.log(456789,API_KEY)
-    let maxdivision = 'https:open.api.nexon.com/fconline/v1/user/maxdivision?ouid=' + data;
+    let maxdivision = 'https://open.api.nexon.com/fconline/v1/user/maxdivision?ouid=' + data;
     let answers = await fetch(maxdivision, {
         headers: {
             'x-nxopen-api-key': API_KEY,
@@ -363,7 +358,7 @@ async function fifaMatchfinal(data) {
 
 // 경기 타입 (예 공식경기)
 async function fifaMathType(data) {
-    let matchType = 'https:open.api.nexon.com/static/fconline/meta/matchtype.json';
+    let matchType = 'https://open.api.nexon.com/static/fconline/meta/matchtype.json';
     let answers = await fetch(matchType, {});
     let type = await answers.json();
     for (let i = 0; i < type.length; i++) {
@@ -375,7 +370,7 @@ async function fifaMathType(data) {
 
 // 점수에 따른 등급이름
 async function fifaDivision(data) {
-    let divisionData = 'https:open.api.nexon.com/static/fconline/meta/division.json';
+    let divisionData = 'https://open.api.nexon.com/static/fconline/meta/division.json';
     let answers = await fetch(divisionData, {});
     let datafordivision = await answers.json();
     for (let i = 0; i < datafordivision.length; i++) {
