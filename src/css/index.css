@@ -268,8 +268,8 @@ p {
     justify-content: center;
     height: 100px;
     position: absolute;
-    top: 360px;
-    right: 910px;
+    top: 40%;
+    right: 50%;
 }
 
 .fcologo{
