@@ -1,69 +1,68 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="google-adsense-account" content="ca-pub-3746750038855279" />
-    <title>FCOAlways</title>
-    <link
-      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
-      rel="stylesheet"
-      integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH"
-      crossorigin="anonymous"
-    />
-    <link rel="stylesheet" type="text/css" href="../css/index.css" />
-    <link rel="stylesheet" type="text/css" href="../css/liveChat.css" />
-    <script src="https://cdn.socket.io/4.2.0/socket.io.min.js"></script>
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script
-      async
-      src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3746750038855279"
-      crossorigin="anonymous"
-    ></script>
-  </head>
-  <body>
-    <!-- 헤더 -->
-    <%- include('share/header') %>
-    <div
-      class="div-box-size"
-      style="display: flex; justify-content: center; flex-direction: column"
-    >
-      <div style="display: flex; flex-direction: column; align-items: center">
-        <div class="chatPlace">
-          <ul
-            id="messages"
-            style="overflow-y: auto; scrollbar-width: none"
-          ></ul>
-        </div>
-        <form id="form" action="">
-          <input id="input" autocomplete="off" />
-          <button class="sendBtn">▶️</button>
-        </form>
-      </div>
-    </div>
-
-    <%- include('share/footer') %>
-
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta name="google-adsense-account" content="ca-pub-3746750038855279" />
+        <title>FCOAlways</title>
+        <link
+            href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+            rel="stylesheet"
+            integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH"
+            crossorigin="anonymous"
+        />
+        <link rel="stylesheet" type="text/css" href="../css/index.css" />
+        <link rel="stylesheet" type="text/css" href="../css/liveChat.css" />
+        <script src="https://cdn.socket.io/4.2.0/socket.io.min.js"></script>
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+        <script
+            async
+            src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3746750038855279"
+            crossorigin="anonymous"
+        ></script>
+    </head>
     <ins
-      class="kakao_ad_area"
-      style="display: none"
-      data-ad-unit="DAN-oQJN02iYektg09FM"
-      data-ad-width="160"
-      data-ad-height="600"
+        class="kakao_ad_area"
+        style="display: none; top: 20%; position: absolute"
+        data-ad-unit="DAN-oQJN02iYektg09FM"
+        data-ad-width="160"
+        data-ad-height="600"
     ></ins>
-    <script
-      type="text/javascript"
-      src="//t1.daumcdn.net/kas/static/ba.min.js"
-      async
-    ></script>
+    <body>
+        <!-- 헤더 -->
+        <%- include('share/header') %>
+        <div
+            class="div-box-size"
+            style="display: flex; justify-content: center; flex-direction: column"
+        >
+            <div style="display: flex; flex-direction: column; align-items: center">
+                <div class="chatPlace">
+                    <ul id="messages" style="overflow-y: auto; scrollbar-width: none"></ul>
+                </div>
+                <form id="form" action="">
+                    <input id="input" autocomplete="off" />
+                    <button class="sendBtn">▶️</button>
+                </form>
+            </div>
+        </div>
 
-    <script type="module" src="../js/header.js"></script>
-    <script src="/socket.io/socket.io.js"></script>
-    <script type="module" src="../js/liveChat.js"></script>
-    <script
-      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
-      integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
-      crossorigin="anonymous"
-    ></script>
-  </body>
+        <%- include('share/footer') %>
+
+        <script type="text/javascript" src="//t1.daumcdn.net/kas/static/ba.min.js" async></script>
+        <script type="module" src="../js/header.js"></script>
+        <script src="/socket.io/socket.io.js"></script>
+        <script type="module" src="../js/liveChat.js"></script>
+        <script
+            src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+            crossorigin="anonymous"
+        ></script>
+    </body>
+    <ins
+        class="kakao_ad_area"
+        style="display: none; top: 20%; position: absolute"
+        data-ad-unit="DAN-rqjZKqZv2uJWwkY5"
+        data-ad-width="160"
+        data-ad-height="600"
+    ></ins>
 </html>
