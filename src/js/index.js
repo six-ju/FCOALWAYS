@@ -1,9 +1,9 @@
-import fifaKey from '/config/config.js';
-const API_KEY = fifaKey.NEXON_API_KEY;
+// import fifaKey from '/config/config.js';
+// const API_KEY = fifaKey.NEXON_API_KEY;
 
 let characterName = '';
 // 키값
-// const API_KEY = await fetchData();
+const API_KEY = await fetchData();
 $(document).ready(function () {
     let win;
     let lose;
