@@ -52,3 +52,9 @@
     border-style: solid !important;
     border-width: 1.5px !important;
 }
+
+.season-table{
+    display: flex;
+    justify-content: center;
+    margin-bottom: 4%;
+}
