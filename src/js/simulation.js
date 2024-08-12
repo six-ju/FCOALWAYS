@@ -16,4 +16,12 @@ $(document).ready(function () {
         let a = $(this).data('id')
         console.log(a)
     })
+
+    $('.upgrade-simulation-player-basic').click(function(){
+        if($('.player-grade').hasClass('hide')){
+            $('.player-grade').removeClass('hide')
+        }else{
+            $('.player-grade').addClass('hide')
+        }
+    })
 });
