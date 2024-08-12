@@ -20,6 +20,10 @@ router.get('/liveChat', (req, res) => {
     res.render("liveChat");
 });
 
+router.get('/simulation', (req, res) => {
+    res.render("simulation");
+});
+
 // 크롤러 실행 라우트 추가
 router.get('/player-crawler', async (req, res) => {
     try {
