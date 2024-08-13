@@ -26,9 +26,9 @@ data-ad-height = "600"></ins>
         <!-- 헤더 -->
         <%- include('share/header') %>
 
-        <button class="season-show-btn">시즌 보기</button>
-        <div class="season-table hide">
-            <table>
+        <div class="season-table">
+          <button class="season-show-btn">시즌 보기</button>
+            <table class="season-sec-table hide">
                 <tbody>
                     <tr class="line-1"></tr>
                     <tr class="line-2"></tr>
@@ -44,12 +44,12 @@ data-ad-height = "600"></ins>
                 </tbody>
             </table>
         </div>
-        <div>
+
           <div class="player-default-div">
             <div style="position: relative;">
               <img src="../img/player_default.webp" alt="" />
               <div class="grade-div">
-                <div class="upgrade-simulation-player-basic">1 ▼</div>
+                <div class="upgrade-simulation-player-basic show-choose-grade">1 ▼</div>
                 <ul class="player-grade hide">
                     <li class="font-color upgrade-simulation-player-basic">1</li>
                     <li class="font-color upgrade-simulation-player-basic upgrade-simulation-player-bronze">2</li>
@@ -62,10 +62,13 @@ data-ad-height = "600"></ins>
                     <li class="font-color upgrade-simulation-player-basic upgrade-simulation-player-gold">9</li>
                 </ul>
               </div>
-            </div>
-              
+            </div>   
           </div>
-        </div>
+
+
+          <button class="upgrade-num">강화</button>
+
+
         <div class="loading hide">
             <img src="../img/loading-7528_256.gif" alt="Loading" />
         </div>
