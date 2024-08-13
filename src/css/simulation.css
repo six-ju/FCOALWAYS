@@ -2,6 +2,7 @@
     display: flex;
     justify-content: center;
     position: relative;
+    margin-top: 5%;
 }
 
 .font-color {
@@ -70,5 +71,14 @@
     position: absolute;
     bottom: 22%;
     right: 4%;
+}
 
+.season-show-btn{
+    position: relative;
+    left: 26.3%;
+    width: 47.4%;
+    border-radius: 13px;
+    padding: 10px;
+    background-color: rgb(0, 255, 13);
+    font-weight: 700;
 }

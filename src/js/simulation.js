@@ -24,4 +24,14 @@ $(document).ready(function () {
             $('.player-grade').addClass('hide')
         }
     })
+
+    $('.season-show-btn').click(function(){
+        if($('.season-table').hasClass('hide')){
+            $('.season-table').removeClass('hide')
+            $('.season-show-btn').text("시즌 닫기")
+        }else{
+            $('.season-table').addClass('hide')
+            $('.season-show-btn').text("시즌 보기")
+        }
+    })
 });
