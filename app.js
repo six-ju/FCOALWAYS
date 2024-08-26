@@ -14,7 +14,7 @@ const server = http.createServer(app);
 const io = new Server(server);
 
 // 서버 포트 설정
-app.set("port", process.env.PORT || 3003);
+app.set("port", process.env.PORT || 3000);
 
 // 뷰 엔진 설정
 app.set("view engine", "ejs");
