@@ -5,6 +5,7 @@ const runCrawler = require('../src/config/crawling/notice'); // 경로를 정확
 // 루트 라우트
 router.get('/', (req, res) => {
     res.render("index");
+    console.log(req.ip)
 });
 
 // routes/index.js 파일에 새로운 라우트 추가
