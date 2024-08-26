@@ -1,11 +1,12 @@
 const express = require('express');
+const requestIp = require("request-ip");
 const router = express.Router();
 const runCrawler = require('../src/config/crawling/notice'); // 경로를 정확히 지정해야 합니다
 
 // 루트 라우트
 router.get('/', (req, res) => {
     res.render("index");
-    console.log(req.ip)
+    console.log(requestIp.getClientIp(req))
 });
 
 // routes/index.js 파일에 새로운 라우트 추가
@@ -23,6 +24,7 @@ router.get('/liveChat', (req, res) => {
 
 router.get('/simulation', (req, res) => {
     res.render("simulation");
+    console.log(requestIp.getClientIp(req))
 });
 
 // 크롤러 실행 라우트 추가
