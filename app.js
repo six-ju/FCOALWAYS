@@ -53,20 +53,36 @@ app.get("/api/data", (req, res) => {
   res.send({ apiKey });
 });
 
+let counter = 0;
 // 소켓 연결 및 이벤트 핸들러 설정
 io.on("connection", (socket) => {
   console.log("a user connected");
   io.emit("chat message", "a user connected");
+  socket.emit('updateCounter', counter);
 
   socket.on("chat message", (msg) => {
     console.log("message: " + msg);
     io.emit("chat message", msg);
+  });
+  // 사용자가 숫자를 올리거나 내릴 때
+  socket.on('increment', () => {
+    counter++;
+    console.log(counter)
+    io.emit('updateCounter', counter); // 모든 사용자에게 새 상태 전송
+  });
+
+  socket.on('decrement', () => {
+    counter--;
+    console.log(counter)
+
+    io.emit('updateCounter', counter); // 모든 사용자에게 새 상태 전송
   });
 
   socket.on("disconnect", () => {
     console.log("user disconnected");
     io.emit("chat message", "user disconnected");
   });
+
 });
 
 // 서버 시작
